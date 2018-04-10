@@ -1,44 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Cizeta;
 
 namespace Cizeta.TraMaAuth
 {
     public class UserAuthenticator
     {
+
+        #region Public members
+
         public User CurrentUser;
         public string ExceptionMessage;
+
+        #endregion
+
+        #region Private members
 
         private AuthenticationMode AuthenticationMode;
         private string CryptoKey;
 
+        #endregion
+
         #region Constructors
 
-        public UserAuthenticator() : this(AuthenticationMode.Any, string.Empty)
-        {
+        public UserAuthenticator() : this(AuthenticationMode.Any) { }
 
-        }
+        public UserAuthenticator(AuthenticationMode authMode) : this(authMode, Properties.Settings.Default.TraMaConnectionString) { }
 
-        public UserAuthenticator(AuthenticationMode authMode) : this(authMode, string.Empty)
-        {
-
-        }
-
-        public UserAuthenticator(AuthenticationMode authMode, string cryptoKey)
+        public UserAuthenticator(AuthenticationMode authMode, string connectionString)
         {
             this.AuthenticationMode = authMode;
-            this.CryptoKey = cryptoKey;
-            this.CurrentUser = new User();
-            this.ExceptionMessage = string.Empty;
-        }
-
-        public UserAuthenticator(AuthenticationMode authMode, string cryptoKey, string connectionString)
-        {
-            this.AuthenticationMode = authMode;
-            this.CryptoKey = cryptoKey;
+            this.CryptoKey = "wpcuklseraox";
             this.CurrentUser = new User();
             this.ExceptionMessage = string.Empty;
             Properties.Settings.Default["TraMaConnectionString"] = connectionString;
