@@ -21,6 +21,7 @@ namespace Cizeta.TraMaAuth
         public string Code;
         public int AccessLevel;
         public Dictionary<string, bool> StationsAccess;
+        public Dictionary<string, bool> StationsLogin;
 
         #endregion
 
@@ -35,10 +36,7 @@ namespace Cizeta.TraMaAuth
 
         #region Constructors
 
-        public Worker() : this(0, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, 0)
-        {
-
-        }
+        internal Worker() : this(0, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, 0) { }
 
         internal Worker(
             int workerId,
@@ -58,11 +56,12 @@ namespace Cizeta.TraMaAuth
             this.Code = workerCode;
             this.AccessLevel = workerAccessLevel;
             this.StationsAccess = new Dictionary<string, bool>();
+            this.StationsLogin = new Dictionary<string, bool>();
         }
 
         #endregion
 
-        #region Private methods
+        #region Internal methods
 
         internal void LoadFromDbByLoginName(string workerLoginName)
         {
@@ -136,6 +135,11 @@ namespace Cizeta.TraMaAuth
         public bool IsEnabledOnStation(string stationName)
         {
             return (StationsAccess[stationName]);
+        }
+
+        public bool IsLoggedOnStation(string stationName)
+        {
+            return (StationsLogin[stationName]);
         }
 
         #endregion

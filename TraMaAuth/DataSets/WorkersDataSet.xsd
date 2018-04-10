@@ -89,7 +89,7 @@
   <xs:element name="WorkersDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="WorkersDataSet" msprop:Generator_UserDSName="WorkersDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="GetWorkerByBadgeCode" msprop:Generator_TableClassName="GetWorkerByBadgeCodeDataTable" msprop:Generator_TableVarName="tableGetWorkerByBadgeCode" msprop:Generator_RowChangedName="GetWorkerByBadgeCodeRowChanged" msprop:Generator_TablePropName="GetWorkerByBadgeCode" msprop:Generator_RowDeletingName="GetWorkerByBadgeCodeRowDeleting" msprop:Generator_RowChangingName="GetWorkerByBadgeCodeRowChanging" msprop:Generator_RowEvHandlerName="GetWorkerByBadgeCodeRowChangeEventHandler" msprop:Generator_RowDeletedName="GetWorkerByBadgeCodeRowDeleted" msprop:Generator_RowClassName="GetWorkerByBadgeCodeRow" msprop:Generator_UserTableName="GetWorkerByBadgeCode" msprop:Generator_RowEvArgName="GetWorkerByBadgeCodeRowChangeEvent">
+        <xs:element name="GetWorkerByBadgeCode" msprop:Generator_TableClassName="GetWorkerByBadgeCodeDataTable" msprop:Generator_TableVarName="tableGetWorkerByBadgeCode" msprop:Generator_TablePropName="GetWorkerByBadgeCode" msprop:Generator_RowDeletingName="GetWorkerByBadgeCodeRowDeleting" msprop:Generator_RowChangingName="GetWorkerByBadgeCodeRowChanging" msprop:Generator_RowEvHandlerName="GetWorkerByBadgeCodeRowChangeEventHandler" msprop:Generator_RowDeletedName="GetWorkerByBadgeCodeRowDeleted" msprop:Generator_UserTableName="GetWorkerByBadgeCode" msprop:Generator_RowChangedName="GetWorkerByBadgeCodeRowChanged" msprop:Generator_RowEvArgName="GetWorkerByBadgeCodeRowChangeEvent" msprop:Generator_RowClassName="GetWorkerByBadgeCodeRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -146,7 +146,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="GetWorkerByLoginName" msprop:Generator_TableClassName="GetWorkerByLoginNameDataTable" msprop:Generator_TableVarName="tableGetWorkerByLoginName" msprop:Generator_RowChangedName="GetWorkerByLoginNameRowChanged" msprop:Generator_TablePropName="GetWorkerByLoginName" msprop:Generator_RowDeletingName="GetWorkerByLoginNameRowDeleting" msprop:Generator_RowChangingName="GetWorkerByLoginNameRowChanging" msprop:Generator_RowEvHandlerName="GetWorkerByLoginNameRowChangeEventHandler" msprop:Generator_RowDeletedName="GetWorkerByLoginNameRowDeleted" msprop:Generator_RowClassName="GetWorkerByLoginNameRow" msprop:Generator_UserTableName="GetWorkerByLoginName" msprop:Generator_RowEvArgName="GetWorkerByLoginNameRowChangeEvent">
+        <xs:element name="GetWorkerByLoginName" msprop:Generator_TableClassName="GetWorkerByLoginNameDataTable" msprop:Generator_TableVarName="tableGetWorkerByLoginName" msprop:Generator_TablePropName="GetWorkerByLoginName" msprop:Generator_RowDeletingName="GetWorkerByLoginNameRowDeleting" msprop:Generator_RowChangingName="GetWorkerByLoginNameRowChanging" msprop:Generator_RowEvHandlerName="GetWorkerByLoginNameRowChangeEventHandler" msprop:Generator_RowDeletedName="GetWorkerByLoginNameRowDeleted" msprop:Generator_UserTableName="GetWorkerByLoginName" msprop:Generator_RowChangedName="GetWorkerByLoginNameRowChanged" msprop:Generator_RowEvArgName="GetWorkerByLoginNameRowChangeEvent" msprop:Generator_RowClassName="GetWorkerByLoginNameRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -203,7 +203,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="GetStationsConfigForWorkerByLoginName" msprop:Generator_TableClassName="GetStationsConfigForWorkerByLoginNameDataTable" msprop:Generator_TableVarName="tableGetStationsConfigForWorkerByLoginName" msprop:Generator_TablePropName="GetStationsConfigForWorkerByLoginName" msprop:Generator_RowDeletingName="GetStationsConfigForWorkerByLoginNameRowDeleting" msprop:Generator_RowChangingName="GetStationsConfigForWorkerByLoginNameRowChanging" msprop:Generator_RowEvHandlerName="GetStationsConfigForWorkerByLoginNameRowChangeEventHandler" msprop:Generator_RowDeletedName="GetStationsConfigForWorkerByLoginNameRowDeleted" msprop:Generator_UserTableName="GetStationsConfigForWorkerByLoginName" msprop:Generator_RowChangedName="GetStationsConfigForWorkerByLoginNameRowChanged" msprop:Generator_RowEvArgName="GetStationsConfigForWorkerByLoginNameRowChangeEvent" msprop:Generator_RowClassName="GetStationsConfigForWorkerByLoginNameRow">
+        <xs:element name="GetStationsConfigForWorkerByLoginName" msprop:Generator_TableClassName="GetStationsConfigForWorkerByLoginNameDataTable" msprop:Generator_TableVarName="tableGetStationsConfigForWorkerByLoginName" msprop:Generator_RowChangedName="GetStationsConfigForWorkerByLoginNameRowChanged" msprop:Generator_TablePropName="GetStationsConfigForWorkerByLoginName" msprop:Generator_RowDeletingName="GetStationsConfigForWorkerByLoginNameRowDeleting" msprop:Generator_RowChangingName="GetStationsConfigForWorkerByLoginNameRowChanging" msprop:Generator_RowEvHandlerName="GetStationsConfigForWorkerByLoginNameRowChangeEventHandler" msprop:Generator_RowDeletedName="GetStationsConfigForWorkerByLoginNameRowDeleted" msprop:Generator_RowClassName="GetStationsConfigForWorkerByLoginNameRow" msprop:Generator_UserTableName="GetStationsConfigForWorkerByLoginName" msprop:Generator_RowEvArgName="GetStationsConfigForWorkerByLoginNameRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -240,10 +240,6 @@
     </xs:unique>
     <xs:unique name="GetWorkerByLoginName_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:GetWorkerByLoginName" />
-      <xs:field xpath="mstns:Id" />
-    </xs:unique>
-    <xs:unique name="GetStationsConfigForWorkerByLoginName_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:GetStationsConfigForWorkerByLoginName" />
       <xs:field xpath="mstns:Id" />
     </xs:unique>
   </xs:element>

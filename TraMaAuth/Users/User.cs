@@ -37,10 +37,7 @@ namespace Cizeta.TraMaAuth
 
         #region Constructors
 
-        internal User() : this(0, string.Empty, string.Empty, string.Empty, UserRole.Viewer, 0)
-        {
-
-        }
+        internal User() : this(0, string.Empty, string.Empty, string.Empty, UserRole.Viewer, 0) { }
 
         internal User(int userId, string userName, string userLoginName, string userBadgeCode, UserRole userRole, int userAutoLogoutTime)
         {
@@ -56,7 +53,7 @@ namespace Cizeta.TraMaAuth
 
         #endregion
 
-        #region Private methods
+        #region Internal methods
 
         internal void LoadFromDbByLoginName(string userLoginName)
         {

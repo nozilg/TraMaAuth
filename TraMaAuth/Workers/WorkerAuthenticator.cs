@@ -59,6 +59,10 @@ namespace Cizeta.TraMaAuth
                         ret = Login(workerBadgeCode, stationName);
                         break;
                 }
+                if (ret == WorkerLoginResult.Ok)
+                {
+                    CurrentWorker.StationsLogin[stationName] = true;
+                }
             }
             catch (Exception ex)
             {
@@ -66,6 +70,11 @@ namespace Cizeta.TraMaAuth
                 ret = WorkerLoginResult.Failed;
             }
             return ret;
+        }
+
+        public void Logout(string stationName)
+        {
+            CurrentWorker.StationsLogin[stationName] = false;
         }
 
         #endregion
@@ -89,7 +98,7 @@ namespace Cizeta.TraMaAuth
                     {
                         if (CurrentWorker.IsEnabledOnStation(stationName))
                         {
-                            ret = WorkerLoginResult.Ok;                            
+                            ret = WorkerLoginResult.Ok;
                         }
                         else
                         {
@@ -152,7 +161,7 @@ namespace Cizeta.TraMaAuth
             ConfigurationHandler ch = new ConfigurationHandler();
             return ch.GetConnectionString();
         }
-        
+
         #endregion
 
     }
