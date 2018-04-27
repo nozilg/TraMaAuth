@@ -26,6 +26,23 @@ namespace TraMaAuth_Test
         }
 
         [TestMethod]
+        public void TestLocalUserPasswordNotFound()
+        {
+            bool actual = false;
+            bool expected = true;
+            string workerLoginName = "FakeUser";
+            string workerPassword = "fake";
+            string stationName = "ST60.00";
+            WorkerAuthenticator wa = new WorkerAuthenticator(AuthenticationMode.UserPassword);
+            WorkerLoginResult res = wa.Login(workerLoginName, workerPassword, string.Empty, stationName);
+            if (res == WorkerLoginResult.Failed)
+            {
+                actual = true;
+            }
+            Assert.AreEqual(actual, expected);
+        }
+
+        [TestMethod]
         public void TestLocalBadgeCode()
         {
             bool actual = false;

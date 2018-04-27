@@ -77,8 +77,9 @@ namespace Cizeta.TraMaAuth
                     this.LoginName = dtr.LoginName;
                     this.Password = dtr.Password;
                     this.BadgeCode = dtr.BadgeCode;
-                    this.Code = dtr.Code;
                     this.RoleName = dtr.RoleName;
+                    this.Code = dtr.Code;
+                    this.AccessLevel = dtr.AccessLevel;
                 }
                 LoadStationsConfigFromDb(this.LoginName);
             }
@@ -102,8 +103,9 @@ namespace Cizeta.TraMaAuth
                     this.LoginName = dtr.LoginName;
                     this.Password = dtr.Password;
                     this.BadgeCode = dtr.BadgeCode;
-                    this.Code = dtr.Code;
                     this.RoleName = dtr.RoleName;
+                    this.Code = dtr.Code;
+                    this.AccessLevel = dtr.AccessLevel;
                 }
                 LoadStationsConfigFromDb(this.LoginName);
             }
@@ -119,11 +121,13 @@ namespace Cizeta.TraMaAuth
             DataSets.WorkersDataSetTableAdapters.GetStationsConfigForWorkerByLoginNameTableAdapter da = new DataSets.WorkersDataSetTableAdapters.GetStationsConfigForWorkerByLoginNameTableAdapter();
             dt = da.GetData(workerLoginName);
             StationsAccess.Clear();
+            StationsLogin.Clear();
             if (dt.Rows.Count > 0)
             {
                 foreach (WorkersDataSet.GetStationsConfigForWorkerByLoginNameRow dtr in dt)
                 {
                     StationsAccess.Add(dtr.StationName, dtr.Enabled);
+                    StationsLogin.Add(dtr.StationName, false);
                 }
             }
         }

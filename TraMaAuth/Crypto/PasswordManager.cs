@@ -24,7 +24,7 @@ namespace Cizeta.TraMaAuth
         {
             string ret = null;
             Cryptography.EncryptionAlgorithm = Cryptography.Algorithm.Rijndael;
-            Cryptography.Key = CryptoKey;
+            Cryptography.Key = this.CryptoKey;
             Cryptography.Encoding = Cryptography.EncodingType.HEX;
             try
             {
@@ -49,7 +49,7 @@ namespace Cizeta.TraMaAuth
             else
             {
                 Cryptography.EncryptionAlgorithm = Cryptography.Algorithm.Rijndael;
-                Cryptography.Key = CryptoKey;
+                Cryptography.Key = this.CryptoKey;
                 Cryptography.Encoding = Cryptography.EncodingType.HEX;
                 Cryptography.Content = password;
                 try
