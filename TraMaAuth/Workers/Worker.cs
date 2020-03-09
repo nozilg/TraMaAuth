@@ -56,6 +56,11 @@ namespace Cizeta.TraMaAuth
             StationsLogin = new Dictionary<string, bool>();
         }
 
+        public Worker(string loginName)
+        {
+            LoadFromDbByLoginName(loginName);
+        }
+
         #endregion
 
         #region Internal methods

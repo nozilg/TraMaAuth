@@ -46,6 +46,11 @@ namespace Cizeta.TraMaAuth
             IsLogged = false;
         }
 
+        public User(string loginName)
+        {
+            LoadFromDbByLoginName(loginName);
+        }
+
         #endregion
 
         #region Internal methods
