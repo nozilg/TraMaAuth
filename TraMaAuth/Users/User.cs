@@ -1,13 +1,8 @@
 ﻿using Cizeta.TraMaAuth.DataSets;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cizeta.TraMaAuth
 {
-
     public class User
     {
 
@@ -30,7 +25,7 @@ namespace Cizeta.TraMaAuth
 
         public bool IsValid
         {
-            get { return (this.Id == 0 ? false : true); }
+            get { return (Id == 0 ? false : true); }
         }
 
         #endregion
@@ -39,16 +34,16 @@ namespace Cizeta.TraMaAuth
 
         internal User() : this(0, string.Empty, string.Empty, string.Empty, UserRole.Viewer, 0) { }
 
-        internal User(int userId, string userName, string userLoginName, string userBadgeCode, UserRole userRole, int userAutoLogoutTime)
+        internal User(int id, string name, string loginName, string badgeCode, UserRole role, int autoLogoutTime)
         {
-            this.Id = userId;
-            this.Name = userName;
-            this.LoginName = userLoginName;
-            this.Password = string.Empty;
-            this.BadgeCode = userBadgeCode;
-            this.Role = userRole;
-            this.AutoLogoutTime = userAutoLogoutTime;
-            this.IsLogged = false;
+            Id = id;
+            Name = name;
+            LoginName = loginName;
+            Password = string.Empty;
+            BadgeCode = badgeCode;
+            Role = role;
+            AutoLogoutTime = autoLogoutTime;
+            IsLogged = false;
         }
 
         #endregion
@@ -57,38 +52,37 @@ namespace Cizeta.TraMaAuth
 
         internal void LoadFromDbByLoginName(string userLoginName)
         {
-            UsersDataSet.GetUserByLoginNameDataTable dt = default(UsersDataSet.GetUserByLoginNameDataTable);
             DataSets.UsersDataSetTableAdapters.GetUserByLoginNameTableAdapter da = new DataSets.UsersDataSetTableAdapters.GetUserByLoginNameTableAdapter();
-            dt = da.GetData(userLoginName);
+            UsersDataSet.GetUserByLoginNameDataTable dt = da.GetData(userLoginName);
             if (dt.Rows.Count == 1)
             {
                 foreach (UsersDataSet.GetUserByLoginNameRow dtr in dt)
                 {
                     {
-                        this.Id = dtr.Id;
-                        this.Name = dtr.Name;
-                        this.LoginName = dtr.LoginName;
-                        this.Password = dtr.Password;
-                        this.BadgeCode = dtr.BadgeCode;
-                        this.AutoLogoutTime = dtr.AutoLogoutTime;
+                        Id = dtr.Id;
+                        Name = dtr.Name;
+                        LoginName = dtr.LoginName;
+                        Password = dtr.Password;
+                        BadgeCode = dtr.BadgeCode;
+                        AutoLogoutTime = dtr.AutoLogoutTime;
                         try
                         {
-                            this.LoginDate = dtr.LastLoginDate;
+                            LoginDate = dtr.LastLoginDate;
                         }
                         catch (Exception)
                         {
-                            this.LoginDate = System.DateTime.MinValue;
+                            LoginDate = DateTime.MinValue;
                         }
                         try
                         {
-                            this.LogoutDate = dtr.LastLogoutDate;
+                            LogoutDate = dtr.LastLogoutDate;
                         }
                         catch (Exception)
                         {
-                            this.LogoutDate = System.DateTime.MinValue;
+                            LogoutDate = DateTime.MinValue;
                         }
-                        this.Role = (UserRole)Enum.Parse(typeof(UserRole), dtr.RoleName);
-                        this.IsLogged = false;
+                        Role = (UserRole)Enum.Parse(typeof(UserRole), dtr.RoleName);
+                        IsLogged = false;
                     }
                 }
             }
@@ -100,38 +94,37 @@ namespace Cizeta.TraMaAuth
 
         internal void LoadFromDbByBadgeCode(string userBadgeCode)
         {
-            UsersDataSet.GetUserByBadgeCodeDataTable dt = default(UsersDataSet.GetUserByBadgeCodeDataTable);
             DataSets.UsersDataSetTableAdapters.GetUserByBadgeCodeTableAdapter da = new DataSets.UsersDataSetTableAdapters.GetUserByBadgeCodeTableAdapter();
-            dt = da.GetData(userBadgeCode);
+            UsersDataSet.GetUserByBadgeCodeDataTable dt = da.GetData(userBadgeCode);
             if (dt.Rows.Count == 1)
             {
                 foreach (UsersDataSet.GetUserByBadgeCodeRow dtr in dt)
                 {
                     {
-                        this.Id = dtr.Id;
-                        this.Name = dtr.Name;
-                        this.LoginName = dtr.LoginName;
-                        this.Password = dtr.Password;
-                        this.BadgeCode = dtr.BadgeCode;
-                        this.AutoLogoutTime = dtr.AutoLogoutTime;
+                        Id = dtr.Id;
+                        Name = dtr.Name;
+                        LoginName = dtr.LoginName;
+                        Password = dtr.Password;
+                        BadgeCode = dtr.BadgeCode;
+                        AutoLogoutTime = dtr.AutoLogoutTime;
                         try
                         {
-                            this.LoginDate = dtr.LastLoginDate;
+                            LoginDate = dtr.LastLoginDate;
                         }
                         catch (Exception)
                         {
-                            this.LoginDate = System.DateTime.MinValue;
+                            LoginDate = DateTime.MinValue;
                         }
                         try
                         {
-                            this.LogoutDate = dtr.LastLogoutDate;
+                            LogoutDate = dtr.LastLogoutDate;
                         }
                         catch (Exception)
                         {
-                            this.LogoutDate = System.DateTime.MinValue;
+                            LogoutDate = DateTime.MinValue;
                         }
-                        this.Role = (UserRole)Enum.Parse(typeof(UserRole), dtr.RoleName);
-                        this.IsLogged = false;
+                        Role = (UserRole)Enum.Parse(typeof(UserRole), dtr.RoleName);
+                        IsLogged = false;
                     }
                 }
             }

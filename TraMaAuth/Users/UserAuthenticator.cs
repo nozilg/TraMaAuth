@@ -23,11 +23,11 @@ namespace Cizeta.TraMaAuth
 
         public UserAuthenticator() : this(AuthenticationMode.Any) { }
 
-        public UserAuthenticator(AuthenticationMode authMode) : this(authMode, Properties.Settings.Default.TraMaConnectionString) { }
+        public UserAuthenticator(AuthenticationMode authenticationMode) : this(authenticationMode, Properties.Settings.Default.TraMaConnectionString) { }
 
-        public UserAuthenticator(AuthenticationMode authMode, string connectionString)
+        public UserAuthenticator(AuthenticationMode authenticationMode, string connectionString)
         {
-            this.AuthenticationMode = authMode;
+            this.AuthenticationMode = authenticationMode;
             this.CryptoKey = "wpcuklseraox";
             this.CurrentUser = new User();
             this.ExceptionMessage = string.Empty;
@@ -40,7 +40,7 @@ namespace Cizeta.TraMaAuth
 
         public UserLoginResult AutoLogin(string userLoginName)
         {
-            UserLoginResult ret = UserLoginResult.Failed;
+            UserLoginResult ret;
             try
             {
                 User u = new User();
@@ -96,7 +96,7 @@ namespace Cizeta.TraMaAuth
 
         public void Logout()
         {
-            this.CurrentUser.IsLogged = false;
+            CurrentUser.IsLogged = false;
         }
 
         #endregion
@@ -105,7 +105,7 @@ namespace Cizeta.TraMaAuth
 
         private UserLoginResult Login(string userLoginName, string userPassword)
         {
-            UserLoginResult ret = UserLoginResult.Failed;
+            UserLoginResult ret;
             try
             {
                 if (string.IsNullOrEmpty(userLoginName))
@@ -136,7 +136,7 @@ namespace Cizeta.TraMaAuth
 
         private UserLoginResult Login(string userBadgeCode)
         {
-            UserLoginResult ret = UserLoginResult.Failed;
+            UserLoginResult ret;
             try
             {
                 if (string.IsNullOrEmpty(userBadgeCode))

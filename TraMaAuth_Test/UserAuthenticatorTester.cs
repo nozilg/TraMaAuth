@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Cizeta.TraMaAuth;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Cizeta.TraMaAuth;
 
 namespace TraMaAuth_Test
 {
