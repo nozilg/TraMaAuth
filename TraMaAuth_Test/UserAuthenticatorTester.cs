@@ -41,9 +41,11 @@ namespace TraMaAuth_Test
         {
             bool actual = false;
             bool expected = true;
-            string connectionString = "Data Source=192.168.100.250;Initial Catalog=TraMa4_520-334;User ID=TraMa;Password=trama";
+            //string connectionString = "Data Source=192.168.100.250;Initial Catalog=TraMa4_520-334;User ID=TraMa;Password=trama";
+            string connectionString = "Data Source=192.168.153.250;Initial Catalog=TraMa4_SLight;User ID=TraMa;Password=trama";
             UserAuthenticator ua = new UserAuthenticator(AuthenticationMode.UserPassword, connectionString);
-            UserLoginResult res = ua.Login("marco.dallera", "md", string.Empty);
+            UserLoginResult res = ua.Login("md", "md", string.Empty);
+            //UserLoginResult res = ua.Login("marco.dallera", "md", string.Empty);
             if (res == UserLoginResult.Ok)
             {
                 actual = true;
