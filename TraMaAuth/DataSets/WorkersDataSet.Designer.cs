@@ -3633,13 +3633,6 @@ namespace Cizeta.TraMaAuth.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public GetStationsConfigForWorkerRow FindById(int Id) {
-                return ((GetStationsConfigForWorkerRow)(this.Rows.Find(new object[] {
-                            Id})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 GetStationsConfigForWorkerDataTable cln = ((GetStationsConfigForWorkerDataTable)(base.Clone()));
                 cln.InitVars();
@@ -3675,10 +3668,7 @@ namespace Cizeta.TraMaAuth.DataSets {
                 base.Columns.Add(this.columnStationName);
                 this.columnEnabled = new global::System.Data.DataColumn("Enabled", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEnabled);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnId}, true));
                 this.columnId.AllowDBNull = false;
-                this.columnId.Unique = true;
                 this.columnWorkerName.MaxLength = 80;
                 this.columnWorkerLoginName.AllowDBNull = false;
                 this.columnWorkerLoginName.MaxLength = 20;
@@ -3953,13 +3943,6 @@ namespace Cizeta.TraMaAuth.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public GetStationsConfigForWorkerByLoginNameRow FindById(int Id) {
-                return ((GetStationsConfigForWorkerByLoginNameRow)(this.Rows.Find(new object[] {
-                            Id})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 GetStationsConfigForWorkerByLoginNameDataTable cln = ((GetStationsConfigForWorkerByLoginNameDataTable)(base.Clone()));
                 cln.InitVars();
@@ -3995,10 +3978,7 @@ namespace Cizeta.TraMaAuth.DataSets {
                 base.Columns.Add(this.columnStationName);
                 this.columnEnabled = new global::System.Data.DataColumn("Enabled", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEnabled);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnId}, true));
                 this.columnId.AllowDBNull = false;
-                this.columnId.Unique = true;
                 this.columnWorkerName.MaxLength = 80;
                 this.columnWorkerLoginName.AllowDBNull = false;
                 this.columnWorkerLoginName.MaxLength = 20;

@@ -23,14 +23,14 @@ namespace Cizeta.TraMaAuth
 
         public WorkerAuthenticator() : this(AuthenticationMode.Any) { }
 
-        public WorkerAuthenticator(AuthenticationMode authMode) : this(authMode, Properties.Settings.Default.TraMaConnectionString) { }
+        public WorkerAuthenticator(AuthenticationMode authenticationMode) : this(authenticationMode, Properties.Settings.Default.TraMaConnectionString) { }
 
-        public WorkerAuthenticator(AuthenticationMode authMode, string connectionString)
+        public WorkerAuthenticator(AuthenticationMode authenticationMode, string connectionString)
         {
-            this.AuthenticationMode = authMode;
-            this.CryptoKey = "sfsoerkgalap";
-            this.CurrentWorker = new Worker();
-            this.ExceptionMessage = string.Empty;
+            AuthenticationMode = authenticationMode;
+            CryptoKey = "sfsoerkgalap";
+            CurrentWorker = new Worker();
+            ExceptionMessage = string.Empty;
             Properties.Settings.Default["TraMaConnectionString"] = connectionString;
         }
 
@@ -83,8 +83,6 @@ namespace Cizeta.TraMaAuth
 
         private WorkerLoginResult Login(string workerLoginName, string workerPassword, string stationName)
         {
-            WorkerLoginResult ret = WorkerLoginResult.Failed;
-
             if (string.IsNullOrEmpty(workerLoginName))
             {
                 return (WorkerLoginResult.Failed);
@@ -100,6 +98,7 @@ namespace Cizeta.TraMaAuth
                 return (WorkerLoginResult.Failed);
             }
 
+            WorkerLoginResult ret;
             try
             {
                 PasswordManager pm = new PasswordManager(CryptoKey);
@@ -129,8 +128,6 @@ namespace Cizeta.TraMaAuth
 
         private WorkerLoginResult Login(string workerBadgeCode, string stationName)
         {
-            WorkerLoginResult ret = WorkerLoginResult.Failed;
-
             if (string.IsNullOrEmpty(workerBadgeCode))
             {
                 return (WorkerLoginResult.Failed);
@@ -146,6 +143,7 @@ namespace Cizeta.TraMaAuth
                 return (WorkerLoginResult.Failed);
             }
 
+            WorkerLoginResult ret;
             try
             {
                 if ((CurrentWorker.IsValid))

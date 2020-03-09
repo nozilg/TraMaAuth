@@ -1,9 +1,6 @@
 ﻿using Cizeta.TraMaAuth.DataSets;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cizeta.TraMaAuth
 {
@@ -29,7 +26,7 @@ namespace Cizeta.TraMaAuth
 
         public bool IsValid
         {
-            get { return (this.Id == 0 ? false : true); }
+            get { return (Id == 0 ? false : true); }
         }
 
         #endregion
@@ -39,24 +36,24 @@ namespace Cizeta.TraMaAuth
         internal Worker() : this(0, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, 0) { }
 
         internal Worker(
-            int workerId,
-            string workerName,
-            string workerLoginName,
-            string workerBadgeCode,
-            string workerRoleName,
-            string workerCode,
-            int workerAccessLevel)
+            int id,
+            string name,
+            string loginName,
+            string badgeCode,
+            string roleName,
+            string code,
+            int accessLevel)
         {
-            this.Id = workerId;
-            this.Name = workerName;
-            this.LoginName = workerLoginName;
-            this.Password = string.Empty;
-            this.BadgeCode = workerBadgeCode;
-            this.RoleName = workerRoleName;
-            this.Code = workerCode;
-            this.AccessLevel = workerAccessLevel;
-            this.StationsAccess = new Dictionary<string, bool>();
-            this.StationsLogin = new Dictionary<string, bool>();
+            Id = id;
+            Name = name;
+            LoginName = loginName;
+            Password = string.Empty;
+            BadgeCode = badgeCode;
+            RoleName = roleName;
+            Code = code;
+            AccessLevel = accessLevel;
+            StationsAccess = new Dictionary<string, bool>();
+            StationsLogin = new Dictionary<string, bool>();
         }
 
         #endregion
@@ -66,22 +63,23 @@ namespace Cizeta.TraMaAuth
         internal void LoadFromDbByLoginName(string workerLoginName)
         {
             WorkersDataSet.GetWorkerByLoginNameDataTable dt;
-            DataSets.WorkersDataSetTableAdapters.GetWorkerByLoginNameTableAdapter da = new DataSets.WorkersDataSetTableAdapters.GetWorkerByLoginNameTableAdapter();
+            DataSets.WorkersDataSetTableAdapters.GetWorkerByLoginNameTableAdapter da = 
+                new DataSets.WorkersDataSetTableAdapters.GetWorkerByLoginNameTableAdapter();
             dt = da.GetData(workerLoginName);
             if (dt.Rows.Count == 1)
             {
                 foreach (WorkersDataSet.GetWorkerByLoginNameRow dtr in dt)
                 {
-                    this.Id = dtr.Id;
-                    this.Name = dtr.Name;
-                    this.LoginName = dtr.LoginName;
-                    this.Password = dtr.Password;
-                    this.BadgeCode = dtr.BadgeCode;
-                    this.RoleName = dtr.RoleName;
-                    this.Code = dtr.Code;
-                    this.AccessLevel = dtr.AccessLevel;
+                    Id = dtr.Id;
+                    Name = dtr.Name;
+                    LoginName = dtr.LoginName;
+                    Password = dtr.Password;
+                    BadgeCode = dtr.BadgeCode;
+                    RoleName = dtr.RoleName;
+                    Code = dtr.Code;
+                    AccessLevel = dtr.AccessLevel;
                 }
-                LoadStationsConfigFromDb(this.LoginName);
+                LoadStationsConfigFromDb(LoginName);
             }
             else
             {
@@ -92,22 +90,23 @@ namespace Cizeta.TraMaAuth
         internal void LoadFromDbByBadgeCode(string workerBadgeCode)
         {
             WorkersDataSet.GetWorkerByBadgeCodeDataTable dt;
-            DataSets.WorkersDataSetTableAdapters.GetWorkerByBadgeCodeTableAdapter da = new DataSets.WorkersDataSetTableAdapters.GetWorkerByBadgeCodeTableAdapter();
+            DataSets.WorkersDataSetTableAdapters.GetWorkerByBadgeCodeTableAdapter da = 
+                new DataSets.WorkersDataSetTableAdapters.GetWorkerByBadgeCodeTableAdapter();
             dt = da.GetData(workerBadgeCode);
             if (dt.Rows.Count == 1)
             {
                 foreach (WorkersDataSet.GetWorkerByBadgeCodeRow dtr in dt)
                 {
-                    this.Id = dtr.Id;
-                    this.Name = dtr.Name;
-                    this.LoginName = dtr.LoginName;
-                    this.Password = dtr.Password;
-                    this.BadgeCode = dtr.BadgeCode;
-                    this.RoleName = dtr.RoleName;
-                    this.Code = dtr.Code;
-                    this.AccessLevel = dtr.AccessLevel;
+                    Id = dtr.Id;
+                    Name = dtr.Name;
+                    LoginName = dtr.LoginName;
+                    Password = dtr.Password;
+                    BadgeCode = dtr.BadgeCode;
+                    RoleName = dtr.RoleName;
+                    Code = dtr.Code;
+                    AccessLevel = dtr.AccessLevel;
                 }
-                LoadStationsConfigFromDb(this.LoginName);
+                LoadStationsConfigFromDb(LoginName);
             }
             else
             {
@@ -117,8 +116,9 @@ namespace Cizeta.TraMaAuth
 
         internal void LoadStationsConfigFromDb(string workerLoginName)
         {
-            WorkersDataSet.GetStationsConfigForWorkerByLoginNameDataTable dt = default(WorkersDataSet.GetStationsConfigForWorkerByLoginNameDataTable);
-            DataSets.WorkersDataSetTableAdapters.GetStationsConfigForWorkerByLoginNameTableAdapter da = new DataSets.WorkersDataSetTableAdapters.GetStationsConfigForWorkerByLoginNameTableAdapter();
+            WorkersDataSet.GetStationsConfigForWorkerByLoginNameDataTable dt;
+            DataSets.WorkersDataSetTableAdapters.GetStationsConfigForWorkerByLoginNameTableAdapter da = 
+                new DataSets.WorkersDataSetTableAdapters.GetStationsConfigForWorkerByLoginNameTableAdapter();
             dt = da.GetData(workerLoginName);
             StationsAccess.Clear();
             StationsLogin.Clear();

@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Cizeta.TraMaAuth;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Cizeta.TraMaAuth;
 
 namespace TraMaAuth_Test
 {
@@ -15,14 +14,14 @@ namespace TraMaAuth_Test
             bool expected = true;
             string workerLoginName = "Administrator";
             string workerPassword = "admin";
-            string stationName = "ST60.00";
+            string stationName = "ST10";
             WorkerAuthenticator wa = new WorkerAuthenticator(AuthenticationMode.UserPassword);
             WorkerLoginResult res = wa.Login(workerLoginName, workerPassword, string.Empty, stationName);
             if (res == WorkerLoginResult.Ok)
             {
                 actual = true;
             }
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -32,14 +31,14 @@ namespace TraMaAuth_Test
             bool expected = true;
             string workerLoginName = "FakeUser";
             string workerPassword = "fake";
-            string stationName = "ST60.00";
+            string stationName = "ST10";
             WorkerAuthenticator wa = new WorkerAuthenticator(AuthenticationMode.UserPassword);
             WorkerLoginResult res = wa.Login(workerLoginName, workerPassword, string.Empty, stationName);
             if (res == WorkerLoginResult.Failed)
             {
                 actual = true;
             }
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -49,14 +48,14 @@ namespace TraMaAuth_Test
             bool expected = true;
             string workerLoginName = "Administrator";
             string workerBadgeCode = "12345";
-            string stationName = "ST60.00";
+            string stationName = "ST10";
             WorkerAuthenticator wa = new WorkerAuthenticator(AuthenticationMode.BadgeCode);
             WorkerLoginResult res = wa.Login(string.Empty, string.Empty, workerBadgeCode, stationName);
             if (wa.CurrentWorker.LoginName == workerLoginName && res == WorkerLoginResult.Ok)
             {
                 actual = true;
             }
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -74,7 +73,7 @@ namespace TraMaAuth_Test
             {
                 actual = true;
             }
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -92,7 +91,7 @@ namespace TraMaAuth_Test
             {
                 actual = true;
             }
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected, actual);
         }
 
     }

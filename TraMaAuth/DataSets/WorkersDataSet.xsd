@@ -279,7 +279,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.GetWorkerIdByCode" DbObjectType="Function" GenerateShortCommands="true" GeneratorSourceName="GetWorkerIdByCode" MethodsParameterType="CLR" Modifier="Assembly" Name="GetWorkerIdByCode" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy11" UserSourceName="GetWorkerIdByCode">
+          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.GetWorkerIdByCode" DbObjectType="Function" GenerateShortCommands="true" GeneratorSourceName="GetWorkerIdByCode" MethodsParameterType="CLR" Modifier="Assembly" Name="GetWorkerIdByCode" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="GetWorkerIdByCode">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.GetWorkerIdByCode</CommandText>
@@ -290,7 +290,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.GetWorkerLoginName" DbObjectType="Function" GenerateShortCommands="true" GeneratorSourceName="GetWorkerLoginName" MethodsParameterType="CLR" Modifier="Assembly" Name="GetWorkerLoginName" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy21" UserSourceName="GetWorkerLoginName">
+          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.GetWorkerLoginName" DbObjectType="Function" GenerateShortCommands="true" GeneratorSourceName="GetWorkerLoginName" MethodsParameterType="CLR" Modifier="Assembly" Name="GetWorkerLoginName" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="GetWorkerLoginName">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.GetWorkerLoginName</CommandText>
@@ -301,7 +301,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.GetWorkerName" DbObjectType="Function" GenerateShortCommands="true" GeneratorSourceName="GetWorkerName" MethodsParameterType="CLR" Modifier="Assembly" Name="GetWorkerName" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="GetWorkerName">
+          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.GetWorkerName" DbObjectType="Function" GenerateShortCommands="true" GeneratorSourceName="GetWorkerName" MethodsParameterType="CLR" Modifier="Assembly" Name="GetWorkerName" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="GetWorkerName">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.GetWorkerName</CommandText>
@@ -312,7 +312,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.CreateRole" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="CreateRole" MethodsParameterType="CLR" Modifier="Assembly" Name="CreateRole" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="CreateRole">
+          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.CreateRole" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="CreateRole" MethodsParameterType="CLR" Modifier="Assembly" Name="CreateRole" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy6" UserSourceName="CreateRole">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.CreateRole</CommandText>
@@ -325,7 +325,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.CreateStationsWorkers" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="CreateStationsWorkers" MethodsParameterType="CLR" Modifier="Assembly" Name="CreateStationsWorkers" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy12" UserSourceName="CreateStationsWorkers">
+          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.CreateStationsWorkers" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="CreateStationsWorkers" MethodsParameterType="CLR" Modifier="Assembly" Name="CreateStationsWorkers" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy7" UserSourceName="CreateStationsWorkers">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.CreateStationsWorkers</CommandText>
@@ -335,7 +335,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.CreateStationWorkers" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="CreateStationWorkers" MethodsParameterType="CLR" Modifier="Assembly" Name="CreateStationWorkers" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy22" UserSourceName="CreateStationWorkers">
+          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.CreateStationWorkers" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="CreateStationWorkers" MethodsParameterType="CLR" Modifier="Assembly" Name="CreateStationWorkers" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy8" UserSourceName="CreateStationWorkers">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.CreateStationWorkers</CommandText>
@@ -346,7 +346,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.CreateWorker" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="CreateWorker" MethodsParameterType="CLR" Modifier="Assembly" Name="CreateWorker" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy31" UserSourceName="CreateWorker">
+          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.CreateWorker" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="CreateWorker" MethodsParameterType="CLR" Modifier="Assembly" Name="CreateWorker" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy9" UserSourceName="CreateWorker">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.CreateWorker</CommandText>
@@ -362,7 +362,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.CreateWorkersStations" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="CreateWorkersStations" MethodsParameterType="CLR" Modifier="Assembly" Name="CreateWorkersStations" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy41" UserSourceName="CreateWorkersStations">
+          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.CreateWorkersStations" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="CreateWorkersStations" MethodsParameterType="CLR" Modifier="Assembly" Name="CreateWorkersStations" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy10" UserSourceName="CreateWorkersStations">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.CreateWorkersStations</CommandText>
@@ -373,7 +373,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.CreateWorkerStations" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="CreateWorkerStations" MethodsParameterType="CLR" Modifier="Assembly" Name="CreateWorkerStations" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="CreateWorkerStations">
+          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.CreateWorkerStations" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="CreateWorkerStations" MethodsParameterType="CLR" Modifier="Assembly" Name="CreateWorkerStations" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy11" UserSourceName="CreateWorkerStations">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.CreateWorkerStations</CommandText>
@@ -384,7 +384,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.DeleteRole" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="DeleteRole" MethodsParameterType="CLR" Modifier="Assembly" Name="DeleteRole" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy6" UserSourceName="DeleteRole">
+          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.DeleteRole" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="DeleteRole" MethodsParameterType="CLR" Modifier="Assembly" Name="DeleteRole" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy12" UserSourceName="DeleteRole">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.DeleteRole</CommandText>
@@ -395,7 +395,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.DeleteStationsWorkers" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="DeleteStationsWorkers" MethodsParameterType="CLR" Modifier="Assembly" Name="DeleteStationsWorkers" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy7" UserSourceName="DeleteStationsWorkers">
+          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.DeleteStationsWorkers" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="DeleteStationsWorkers" MethodsParameterType="CLR" Modifier="Assembly" Name="DeleteStationsWorkers" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy13" UserSourceName="DeleteStationsWorkers">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.DeleteStationsWorkers</CommandText>
@@ -405,7 +405,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.DeleteStationWorkers" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="DeleteStationWorkers" MethodsParameterType="CLR" Modifier="Assembly" Name="DeleteStationWorkers" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy8" UserSourceName="DeleteStationWorkers">
+          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.DeleteStationWorkers" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="DeleteStationWorkers" MethodsParameterType="CLR" Modifier="Assembly" Name="DeleteStationWorkers" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy14" UserSourceName="DeleteStationWorkers">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.DeleteStationWorkers</CommandText>
@@ -416,7 +416,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.DeleteWorker" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="DeleteWorker" MethodsParameterType="CLR" Modifier="Assembly" Name="DeleteWorker" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy9" UserSourceName="DeleteWorker">
+          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.DeleteWorker" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="DeleteWorker" MethodsParameterType="CLR" Modifier="Assembly" Name="DeleteWorker" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy15" UserSourceName="DeleteWorker">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.DeleteWorker</CommandText>
@@ -427,7 +427,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.MergeRole" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="MergeRole" MethodsParameterType="CLR" Modifier="Assembly" Name="MergeRole" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy10" UserSourceName="MergeRole">
+          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.MergeRole" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="MergeRole" MethodsParameterType="CLR" Modifier="Assembly" Name="MergeRole" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy16" UserSourceName="MergeRole">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.MergeRole</CommandText>
@@ -441,7 +441,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.MergeWorker" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="MergeWorker" MethodsParameterType="CLR" Modifier="Assembly" Name="MergeWorker" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy13" UserSourceName="MergeWorker">
+          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.MergeWorker" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="MergeWorker" MethodsParameterType="CLR" Modifier="Assembly" Name="MergeWorker" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy17" UserSourceName="MergeWorker">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.MergeWorker</CommandText>
@@ -458,7 +458,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.GetLastId" DbObjectType="Function" GenerateShortCommands="true" GeneratorSourceName="GetLastId" MethodsParameterType="CLR" Modifier="Assembly" Name="GetLastId" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy14" UserSourceName="GetLastId">
+          <DbSource ConnectionRef="TraMaConnectionString (Settings)" DbObjectName="TraMa4_Test.dbo.GetLastId" DbObjectType="Function" GenerateShortCommands="true" GeneratorSourceName="GetLastId" MethodsParameterType="CLR" Modifier="Assembly" Name="GetLastId" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy18" UserSourceName="GetLastId">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>dbo.GetLastId</CommandText>
@@ -476,7 +476,7 @@
   <xs:element name="WorkersDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="WorkersDataSet" msprop:Generator_UserDSName="WorkersDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="GetRole" msprop:Generator_TableClassName="GetRoleDataTable" msprop:Generator_TableVarName="tableGetRole" msprop:Generator_TablePropName="GetRole" msprop:Generator_RowDeletingName="GetRoleRowDeleting" msprop:Generator_RowChangingName="GetRoleRowChanging" msprop:Generator_RowEvHandlerName="GetRoleRowChangeEventHandler" msprop:Generator_RowDeletedName="GetRoleRowDeleted" msprop:Generator_UserTableName="GetRole" msprop:Generator_RowChangedName="GetRoleRowChanged" msprop:Generator_RowEvArgName="GetRoleRowChangeEvent" msprop:Generator_RowClassName="GetRoleRow">
+        <xs:element name="GetRole" msprop:Generator_TableClassName="GetRoleDataTable" msprop:Generator_TableVarName="tableGetRole" msprop:Generator_RowChangedName="GetRoleRowChanged" msprop:Generator_TablePropName="GetRole" msprop:Generator_RowDeletingName="GetRoleRowDeleting" msprop:Generator_RowChangingName="GetRoleRowChanging" msprop:Generator_RowEvHandlerName="GetRoleRowChangeEventHandler" msprop:Generator_RowDeletedName="GetRoleRowDeleted" msprop:Generator_RowClassName="GetRoleRow" msprop:Generator_UserTableName="GetRole" msprop:Generator_RowEvArgName="GetRoleRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -506,7 +506,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="GetRoles" msprop:Generator_TableClassName="GetRolesDataTable" msprop:Generator_TableVarName="tableGetRoles" msprop:Generator_TablePropName="GetRoles" msprop:Generator_RowDeletingName="GetRolesRowDeleting" msprop:Generator_RowChangingName="GetRolesRowChanging" msprop:Generator_RowEvHandlerName="GetRolesRowChangeEventHandler" msprop:Generator_RowDeletedName="GetRolesRowDeleted" msprop:Generator_UserTableName="GetRoles" msprop:Generator_RowChangedName="GetRolesRowChanged" msprop:Generator_RowEvArgName="GetRolesRowChangeEvent" msprop:Generator_RowClassName="GetRolesRow">
+        <xs:element name="GetRoles" msprop:Generator_TableClassName="GetRolesDataTable" msprop:Generator_TableVarName="tableGetRoles" msprop:Generator_RowChangedName="GetRolesRowChanged" msprop:Generator_TablePropName="GetRoles" msprop:Generator_RowDeletingName="GetRolesRowDeleting" msprop:Generator_RowChangingName="GetRolesRowChanging" msprop:Generator_RowEvHandlerName="GetRolesRowChangeEventHandler" msprop:Generator_RowDeletedName="GetRolesRowDeleted" msprop:Generator_RowClassName="GetRolesRow" msprop:Generator_UserTableName="GetRoles" msprop:Generator_RowEvArgName="GetRolesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -536,7 +536,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="GetRoleByName" msprop:Generator_TableClassName="GetRoleByNameDataTable" msprop:Generator_TableVarName="tableGetRoleByName" msprop:Generator_TablePropName="GetRoleByName" msprop:Generator_RowDeletingName="GetRoleByNameRowDeleting" msprop:Generator_RowChangingName="GetRoleByNameRowChanging" msprop:Generator_RowEvHandlerName="GetRoleByNameRowChangeEventHandler" msprop:Generator_RowDeletedName="GetRoleByNameRowDeleted" msprop:Generator_UserTableName="GetRoleByName" msprop:Generator_RowChangedName="GetRoleByNameRowChanged" msprop:Generator_RowEvArgName="GetRoleByNameRowChangeEvent" msprop:Generator_RowClassName="GetRoleByNameRow">
+        <xs:element name="GetRoleByName" msprop:Generator_TableClassName="GetRoleByNameDataTable" msprop:Generator_TableVarName="tableGetRoleByName" msprop:Generator_RowChangedName="GetRoleByNameRowChanged" msprop:Generator_TablePropName="GetRoleByName" msprop:Generator_RowDeletingName="GetRoleByNameRowDeleting" msprop:Generator_RowChangingName="GetRoleByNameRowChanging" msprop:Generator_RowEvHandlerName="GetRoleByNameRowChangeEventHandler" msprop:Generator_RowDeletedName="GetRoleByNameRowDeleted" msprop:Generator_RowClassName="GetRoleByNameRow" msprop:Generator_UserTableName="GetRoleByName" msprop:Generator_RowEvArgName="GetRoleByNameRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -566,7 +566,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="GetWorker" msprop:Generator_TableClassName="GetWorkerDataTable" msprop:Generator_TableVarName="tableGetWorker" msprop:Generator_TablePropName="GetWorker" msprop:Generator_RowDeletingName="GetWorkerRowDeleting" msprop:Generator_RowChangingName="GetWorkerRowChanging" msprop:Generator_RowEvHandlerName="GetWorkerRowChangeEventHandler" msprop:Generator_RowDeletedName="GetWorkerRowDeleted" msprop:Generator_UserTableName="GetWorker" msprop:Generator_RowChangedName="GetWorkerRowChanged" msprop:Generator_RowEvArgName="GetWorkerRowChangeEvent" msprop:Generator_RowClassName="GetWorkerRow">
+        <xs:element name="GetWorker" msprop:Generator_TableClassName="GetWorkerDataTable" msprop:Generator_TableVarName="tableGetWorker" msprop:Generator_RowChangedName="GetWorkerRowChanged" msprop:Generator_TablePropName="GetWorker" msprop:Generator_RowDeletingName="GetWorkerRowDeleting" msprop:Generator_RowChangingName="GetWorkerRowChanging" msprop:Generator_RowEvHandlerName="GetWorkerRowChangeEventHandler" msprop:Generator_RowDeletedName="GetWorkerRowDeleted" msprop:Generator_RowClassName="GetWorkerRow" msprop:Generator_UserTableName="GetWorker" msprop:Generator_RowEvArgName="GetWorkerRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -623,7 +623,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="GetWorkersList" msprop:Generator_TableClassName="GetWorkersListDataTable" msprop:Generator_TableVarName="tableGetWorkersList" msprop:Generator_TablePropName="GetWorkersList" msprop:Generator_RowDeletingName="GetWorkersListRowDeleting" msprop:Generator_RowChangingName="GetWorkersListRowChanging" msprop:Generator_RowEvHandlerName="GetWorkersListRowChangeEventHandler" msprop:Generator_RowDeletedName="GetWorkersListRowDeleted" msprop:Generator_UserTableName="GetWorkersList" msprop:Generator_RowChangedName="GetWorkersListRowChanged" msprop:Generator_RowEvArgName="GetWorkersListRowChangeEvent" msprop:Generator_RowClassName="GetWorkersListRow">
+        <xs:element name="GetWorkersList" msprop:Generator_TableClassName="GetWorkersListDataTable" msprop:Generator_TableVarName="tableGetWorkersList" msprop:Generator_RowChangedName="GetWorkersListRowChanged" msprop:Generator_TablePropName="GetWorkersList" msprop:Generator_RowDeletingName="GetWorkersListRowDeleting" msprop:Generator_RowChangingName="GetWorkersListRowChanging" msprop:Generator_RowEvHandlerName="GetWorkersListRowChangeEventHandler" msprop:Generator_RowDeletedName="GetWorkersListRowDeleted" msprop:Generator_RowClassName="GetWorkersListRow" msprop:Generator_UserTableName="GetWorkersList" msprop:Generator_RowEvArgName="GetWorkersListRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -680,7 +680,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="GetWorkerByBadgeCode" msprop:Generator_TableClassName="GetWorkerByBadgeCodeDataTable" msprop:Generator_TableVarName="tableGetWorkerByBadgeCode" msprop:Generator_TablePropName="GetWorkerByBadgeCode" msprop:Generator_RowDeletingName="GetWorkerByBadgeCodeRowDeleting" msprop:Generator_RowChangingName="GetWorkerByBadgeCodeRowChanging" msprop:Generator_RowEvHandlerName="GetWorkerByBadgeCodeRowChangeEventHandler" msprop:Generator_RowDeletedName="GetWorkerByBadgeCodeRowDeleted" msprop:Generator_UserTableName="GetWorkerByBadgeCode" msprop:Generator_RowChangedName="GetWorkerByBadgeCodeRowChanged" msprop:Generator_RowEvArgName="GetWorkerByBadgeCodeRowChangeEvent" msprop:Generator_RowClassName="GetWorkerByBadgeCodeRow">
+        <xs:element name="GetWorkerByBadgeCode" msprop:Generator_TableClassName="GetWorkerByBadgeCodeDataTable" msprop:Generator_TableVarName="tableGetWorkerByBadgeCode" msprop:Generator_RowChangedName="GetWorkerByBadgeCodeRowChanged" msprop:Generator_TablePropName="GetWorkerByBadgeCode" msprop:Generator_RowDeletingName="GetWorkerByBadgeCodeRowDeleting" msprop:Generator_RowChangingName="GetWorkerByBadgeCodeRowChanging" msprop:Generator_RowEvHandlerName="GetWorkerByBadgeCodeRowChangeEventHandler" msprop:Generator_RowDeletedName="GetWorkerByBadgeCodeRowDeleted" msprop:Generator_RowClassName="GetWorkerByBadgeCodeRow" msprop:Generator_UserTableName="GetWorkerByBadgeCode" msprop:Generator_RowEvArgName="GetWorkerByBadgeCodeRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -737,7 +737,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="GetWorkerByLoginName" msprop:Generator_TableClassName="GetWorkerByLoginNameDataTable" msprop:Generator_TableVarName="tableGetWorkerByLoginName" msprop:Generator_TablePropName="GetWorkerByLoginName" msprop:Generator_RowDeletingName="GetWorkerByLoginNameRowDeleting" msprop:Generator_RowChangingName="GetWorkerByLoginNameRowChanging" msprop:Generator_RowEvHandlerName="GetWorkerByLoginNameRowChangeEventHandler" msprop:Generator_RowDeletedName="GetWorkerByLoginNameRowDeleted" msprop:Generator_UserTableName="GetWorkerByLoginName" msprop:Generator_RowChangedName="GetWorkerByLoginNameRowChanged" msprop:Generator_RowEvArgName="GetWorkerByLoginNameRowChangeEvent" msprop:Generator_RowClassName="GetWorkerByLoginNameRow">
+        <xs:element name="GetWorkerByLoginName" msprop:Generator_TableClassName="GetWorkerByLoginNameDataTable" msprop:Generator_TableVarName="tableGetWorkerByLoginName" msprop:Generator_RowChangedName="GetWorkerByLoginNameRowChanged" msprop:Generator_TablePropName="GetWorkerByLoginName" msprop:Generator_RowDeletingName="GetWorkerByLoginNameRowDeleting" msprop:Generator_RowChangingName="GetWorkerByLoginNameRowChanging" msprop:Generator_RowEvHandlerName="GetWorkerByLoginNameRowChangeEventHandler" msprop:Generator_RowDeletedName="GetWorkerByLoginNameRowDeleted" msprop:Generator_RowClassName="GetWorkerByLoginNameRow" msprop:Generator_UserTableName="GetWorkerByLoginName" msprop:Generator_RowEvArgName="GetWorkerByLoginNameRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -794,7 +794,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="GetWorkers" msprop:Generator_TableClassName="GetWorkersDataTable" msprop:Generator_TableVarName="tableGetWorkers" msprop:Generator_TablePropName="GetWorkers" msprop:Generator_RowDeletingName="GetWorkersRowDeleting" msprop:Generator_RowChangingName="GetWorkersRowChanging" msprop:Generator_RowEvHandlerName="GetWorkersRowChangeEventHandler" msprop:Generator_RowDeletedName="GetWorkersRowDeleted" msprop:Generator_UserTableName="GetWorkers" msprop:Generator_RowChangedName="GetWorkersRowChanged" msprop:Generator_RowEvArgName="GetWorkersRowChangeEvent" msprop:Generator_RowClassName="GetWorkersRow">
+        <xs:element name="GetWorkers" msprop:Generator_TableClassName="GetWorkersDataTable" msprop:Generator_TableVarName="tableGetWorkers" msprop:Generator_RowChangedName="GetWorkersRowChanged" msprop:Generator_TablePropName="GetWorkers" msprop:Generator_RowDeletingName="GetWorkersRowDeleting" msprop:Generator_RowChangingName="GetWorkersRowChanging" msprop:Generator_RowEvHandlerName="GetWorkersRowChangeEventHandler" msprop:Generator_RowDeletedName="GetWorkersRowDeleted" msprop:Generator_RowClassName="GetWorkersRow" msprop:Generator_UserTableName="GetWorkers" msprop:Generator_RowEvArgName="GetWorkersRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -851,7 +851,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="GetStationsConfigForWorker" msprop:Generator_TableClassName="GetStationsConfigForWorkerDataTable" msprop:Generator_TableVarName="tableGetStationsConfigForWorker" msprop:Generator_TablePropName="GetStationsConfigForWorker" msprop:Generator_RowDeletingName="GetStationsConfigForWorkerRowDeleting" msprop:Generator_RowChangingName="GetStationsConfigForWorkerRowChanging" msprop:Generator_RowEvHandlerName="GetStationsConfigForWorkerRowChangeEventHandler" msprop:Generator_RowDeletedName="GetStationsConfigForWorkerRowDeleted" msprop:Generator_UserTableName="GetStationsConfigForWorker" msprop:Generator_RowChangedName="GetStationsConfigForWorkerRowChanged" msprop:Generator_RowEvArgName="GetStationsConfigForWorkerRowChangeEvent" msprop:Generator_RowClassName="GetStationsConfigForWorkerRow">
+        <xs:element name="GetStationsConfigForWorker" msprop:Generator_TableClassName="GetStationsConfigForWorkerDataTable" msprop:Generator_TableVarName="tableGetStationsConfigForWorker" msprop:Generator_RowChangedName="GetStationsConfigForWorkerRowChanged" msprop:Generator_TablePropName="GetStationsConfigForWorker" msprop:Generator_RowDeletingName="GetStationsConfigForWorkerRowDeleting" msprop:Generator_RowChangingName="GetStationsConfigForWorkerRowChanging" msprop:Generator_RowEvHandlerName="GetStationsConfigForWorkerRowChangeEventHandler" msprop:Generator_RowDeletedName="GetStationsConfigForWorkerRowDeleted" msprop:Generator_RowClassName="GetStationsConfigForWorkerRow" msprop:Generator_UserTableName="GetStationsConfigForWorker" msprop:Generator_RowEvArgName="GetStationsConfigForWorkerRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -880,7 +880,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="GetStationsConfigForWorkerByLoginName" msprop:Generator_TableClassName="GetStationsConfigForWorkerByLoginNameDataTable" msprop:Generator_TableVarName="tableGetStationsConfigForWorkerByLoginName" msprop:Generator_TablePropName="GetStationsConfigForWorkerByLoginName" msprop:Generator_RowDeletingName="GetStationsConfigForWorkerByLoginNameRowDeleting" msprop:Generator_RowChangingName="GetStationsConfigForWorkerByLoginNameRowChanging" msprop:Generator_RowEvHandlerName="GetStationsConfigForWorkerByLoginNameRowChangeEventHandler" msprop:Generator_RowDeletedName="GetStationsConfigForWorkerByLoginNameRowDeleted" msprop:Generator_UserTableName="GetStationsConfigForWorkerByLoginName" msprop:Generator_RowChangedName="GetStationsConfigForWorkerByLoginNameRowChanged" msprop:Generator_RowEvArgName="GetStationsConfigForWorkerByLoginNameRowChangeEvent" msprop:Generator_RowClassName="GetStationsConfigForWorkerByLoginNameRow">
+        <xs:element name="GetStationsConfigForWorkerByLoginName" msprop:Generator_TableClassName="GetStationsConfigForWorkerByLoginNameDataTable" msprop:Generator_TableVarName="tableGetStationsConfigForWorkerByLoginName" msprop:Generator_RowChangedName="GetStationsConfigForWorkerByLoginNameRowChanged" msprop:Generator_TablePropName="GetStationsConfigForWorkerByLoginName" msprop:Generator_RowDeletingName="GetStationsConfigForWorkerByLoginNameRowDeleting" msprop:Generator_RowChangingName="GetStationsConfigForWorkerByLoginNameRowChanging" msprop:Generator_RowEvHandlerName="GetStationsConfigForWorkerByLoginNameRowChangeEventHandler" msprop:Generator_RowDeletedName="GetStationsConfigForWorkerByLoginNameRowDeleted" msprop:Generator_RowClassName="GetStationsConfigForWorkerByLoginNameRow" msprop:Generator_UserTableName="GetStationsConfigForWorkerByLoginName" msprop:Generator_RowEvArgName="GetStationsConfigForWorkerByLoginNameRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -941,14 +941,6 @@
     </xs:unique>
     <xs:unique name="GetWorkers_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:GetWorkers" />
-      <xs:field xpath="mstns:Id" />
-    </xs:unique>
-    <xs:unique name="GetStationsConfigForWorker_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:GetStationsConfigForWorker" />
-      <xs:field xpath="mstns:Id" />
-    </xs:unique>
-    <xs:unique name="GetStationsConfigForWorkerByLoginName_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:GetStationsConfigForWorkerByLoginName" />
       <xs:field xpath="mstns:Id" />
     </xs:unique>
   </xs:element>
