@@ -1,5 +1,4 @@
-﻿using Cizeta.TraMaAuth.DataSets;
-using System;
+﻿using System;
 using System.Reflection;
 
 namespace Cizeta.TraMaAuth
@@ -10,43 +9,47 @@ namespace Cizeta.TraMaAuth
         public string Name;
         public string Description;
         public int AccessLevel;
-        public bool CanRepair;
-        //public UserRole UserRole;
 
-        public Role() : this(0, string.Empty, string.Empty, 0, false) { }
+        public Role() : this(0, string.Empty, string.Empty, 0) { }
 
-        public Role(string name)
+        public Role(string name) : this()
         {
             LoadFromDb(name);
         }
 
-        public Role(int id, string name, string description, int accessLevel, bool canRepair)
+        public Role(int id, string name, string description, int accessLevel)
         {
             Id = id;
             Name = name;
             Description = description;
             AccessLevel = accessLevel;
-            CanRepair = canRepair;
         }
 
         public void LoadFromDb(string name)
         {
-            WorkersDataSet.GetRoleByNameDataTable dt;
-            DataSets.WorkersDataSetTableAdapters.GetRoleByNameTableAdapter da = new DataSets.WorkersDataSetTableAdapters.GetRoleByNameTableAdapter();
-            dt = da.GetData(name);
-            if (dt.Rows.Count == 1)
+            try
             {
-                foreach (WorkersDataSet.GetRoleByNameRow dtr in dt)
+                WorkersDataSet.GetRoleByNameDataTable dt;
+                WorkersDataSetTableAdapters.GetRoleByNameTableAdapter da =
+                    new WorkersDataSetTableAdapters.GetRoleByNameTableAdapter();
+                dt = da.GetData(name);
+                if (dt.Rows.Count == 1)
                 {
-                    Id = dtr.Id;
-                    Name = dtr.Name;
-                    Description = dtr.Description;
-                    CanRepair = dtr.CanRepair;
-                    AccessLevel = dtr.AccessLevel;
+                    foreach (WorkersDataSet.GetRoleByNameRow dtr in dt)
+                    {
+                        Id = dtr.Id;
+                        Name = dtr.Name;
+                        Description = dtr.Description;
+                        AccessLevel = dtr.AccessLevel;
+                    }
                 }
             }
-            else
-                throw new Exception(string.Format("RoleNotFound"));
+            catch (Exception ex)
+            {
+                throw new Exception(ExceptionBuilder.ComposeMessage(
+                    MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex,
+                    new string[] { name }));
+            }
         }
 
         public static bool Exists(string name)
@@ -54,16 +57,16 @@ namespace Cizeta.TraMaAuth
             bool ret = false;
             try
             {
-                using (DataSets.WorkersDataSetTableAdapters.QueriesTableAdapter q = new DataSets.WorkersDataSetTableAdapters.QueriesTableAdapter())
+                using (WorkersDataSetTableAdapters.QueriesTableAdapter q = new WorkersDataSetTableAdapters.QueriesTableAdapter())
                 {
                     ret = q.RoleExists(name) ?? false;
                 }
             }
             catch (Exception ex)
             {
-                throw new DbException(
-                    ExceptionBuilder.ComposeMessage(MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex,
-                        new string[] { name }));
+                throw new Exception(ExceptionBuilder.ComposeMessage(
+                    MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex,
+                    new string[] { name }));
             }
             return ret;
         }
@@ -73,7 +76,7 @@ namespace Cizeta.TraMaAuth
             int ret = 0;
             try
             {
-                using (DataSets.WorkersDataSetTableAdapters.QueriesTableAdapter q = new DataSets.WorkersDataSetTableAdapters.QueriesTableAdapter())
+                using (WorkersDataSetTableAdapters.QueriesTableAdapter q = new WorkersDataSetTableAdapters.QueriesTableAdapter())
                 {
                     q.CreateRole(name, description, accessLevel);
                     ret = q.GetLastId("Roles") ?? 0;
@@ -81,9 +84,9 @@ namespace Cizeta.TraMaAuth
             }
             catch (Exception ex)
             {
-                throw new DbException(
-                    ExceptionBuilder.ComposeMessage(MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex,
-                        new string[] { name, description, accessLevel.ToString() })) ;
+                throw new Exception(ExceptionBuilder.ComposeMessage(
+                    MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex,
+                    new string[] { name, description, accessLevel.ToString() }));
             }
             return ret;
         }
@@ -92,16 +95,16 @@ namespace Cizeta.TraMaAuth
         {
             try
             {
-                using (DataSets.WorkersDataSetTableAdapters.QueriesTableAdapter q = new DataSets.WorkersDataSetTableAdapters.QueriesTableAdapter())
+                using (WorkersDataSetTableAdapters.QueriesTableAdapter q = new WorkersDataSetTableAdapters.QueriesTableAdapter())
                 {
                     q.MergeRole(id, name, description, accessLevel);
                 }
             }
             catch (Exception ex)
             {
-                throw new DbException(
-                    ExceptionBuilder.ComposeMessage(MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex,
-                        new string[] { id.ToString(), name, description, accessLevel.ToString() }));
+                throw new Exception(ExceptionBuilder.ComposeMessage(
+                    MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex,
+                    new string[] { id.ToString(), name, description, accessLevel.ToString() }));
             }
         }
 
@@ -109,16 +112,16 @@ namespace Cizeta.TraMaAuth
         {
             try
             {
-                using (DataSets.WorkersDataSetTableAdapters.QueriesTableAdapter q = new DataSets.WorkersDataSetTableAdapters.QueriesTableAdapter())
+                using (WorkersDataSetTableAdapters.QueriesTableAdapter q = new WorkersDataSetTableAdapters.QueriesTableAdapter())
                 {
                     q.DeleteRole(name);
                 }
             }
             catch (Exception ex)
             {
-                throw new DbException(
-                    ExceptionBuilder.ComposeMessage(MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex,
-                        new string[] { name }));
+                throw new Exception(ExceptionBuilder.ComposeMessage(
+                    MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex,
+                    new string[] { name }));
             }
         }
     }
