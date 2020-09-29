@@ -72,6 +72,7 @@
     <Compile Include="Users\Users.cs" />
     <Compile Include="Workers\Worker.cs" />
     <Compile Include="Workers\WorkerAuthenticator.cs" />
+    <Compile Include="Workers\WorkerFunctions.cs" />
     <Compile Include="Workers\Workers.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,4 @@
-﻿using Cizeta.TraMaAuth.DataSets;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -31,20 +30,18 @@ namespace Cizeta.TraMaAuth
         {
             Clear();
             WorkersDataSet.GetWorkersDataTable dt;
-            DataSets.WorkersDataSetTableAdapters.GetWorkersTableAdapter da = 
-                new DataSets.WorkersDataSetTableAdapters.GetWorkersTableAdapter();
+            WorkersDataSetTableAdapters.GetWorkersTableAdapter da = 
+                new WorkersDataSetTableAdapters.GetWorkersTableAdapter();
             dt = da.GetData();
             foreach (WorkersDataSet.GetWorkersRow dtr in dt.Rows)
             {
-                Add(
-                    new Worker(
-                        dtr.Id, 
-                        dtr.Name, 
-                        dtr.LoginName, 
-                        dtr.BadgeCode, 
-                        dtr.Code, 
-                        dtr.RoleName,
-                        dtr.AccessLevel));
+                Add(new Worker(
+                    dtr.Id, 
+                    dtr.Name, 
+                    dtr.LoginName, 
+                    dtr.BadgeCode, 
+                    dtr.Code, 
+                    dtr.RoleName));
                 this.Last().LoadStationsConfigFromDb(dtr.LoginName);
             }
         }
