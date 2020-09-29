@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace Cizeta.TraMaAuth.DataSets {
+namespace Cizeta.TraMaAuth {
     
     
     /// <summary>
@@ -3691,7 +3691,7 @@ namespace Cizeta.TraMaAuth.DataSets {
         }
     }
 }
-namespace Cizeta.TraMaAuth.DataSets.UsersDataSetTableAdapters {
+namespace Cizeta.TraMaAuth.UsersDataSetTableAdapters {
     
     
     /// <summary>
