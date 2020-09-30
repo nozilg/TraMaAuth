@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Cizeta.TraMaAuth
 {
@@ -10,12 +6,12 @@ namespace Cizeta.TraMaAuth
     {
         public string ExceptionMessage;
 
-        private string CryptoKey;
+        private readonly string CryptoKey;
 
         public PasswordManager(string cryptoKey)
         {
-            this.CryptoKey = cryptoKey;
-            this.ExceptionMessage = string.Empty;
+            CryptoKey = cryptoKey;
+            ExceptionMessage = string.Empty;
         }
 
         #region Public methods

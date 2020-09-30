@@ -7,15 +7,15 @@ namespace Cizeta.TraMaAuth
 
         #region Public members
 
-        public Worker CurrentWorker;
+        //public Worker CurrentWorker;
         public string ExceptionMessage;
 
         #endregion
 
         #region Private members
 
-        private AuthenticationMode AuthenticationMode;
-        private string CryptoKey;
+        private readonly AuthenticationMode AuthenticationMode;
+        private readonly string CryptoKey;
 
         #endregion
 
@@ -29,7 +29,7 @@ namespace Cizeta.TraMaAuth
         {
             AuthenticationMode = authenticationMode;
             CryptoKey = "sfsoerkgalap";
-            CurrentWorker = new Worker();
+            //CurrentWorker = new Worker();
             ExceptionMessage = string.Empty;
             Properties.Settings.Default["TraMaConnectionString"] = connectionString;
         }
@@ -38,7 +38,12 @@ namespace Cizeta.TraMaAuth
 
         #region Public methods
 
-        public WorkerLoginResult Login(string workerLoginName, string workerPassword, string workerBadgeCode, string stationName)
+        public WorkerLoginResult Login(string loginName, string password, string badgeCode, string stationName)
+        {
+            return Login(loginName, password, badgeCode, stationName, WorkerFunction.None);
+        }
+
+        public WorkerLoginResult Login(string loginName, string password, string badgeCode, string stationName, WorkerFunction workerFunction)
         {
             WorkerLoginResult ret = WorkerLoginResult.Failed;
             try
@@ -46,22 +51,18 @@ namespace Cizeta.TraMaAuth
                 switch (AuthenticationMode)
                 {
                     case AuthenticationMode.Any:
-                        ret = Login(workerLoginName, workerPassword, stationName);
+                        ret = Login(loginName, password, stationName, workerFunction);
                         if (ret != WorkerLoginResult.Ok)
                         {
-                            ret = Login(workerBadgeCode, stationName);
+                            ret = Login(badgeCode, stationName, workerFunction);
                         }
                         break;
                     case AuthenticationMode.UserPassword:
-                        ret = Login(workerLoginName, workerPassword, stationName);
+                        ret = Login(loginName, password, stationName, workerFunction);
                         break;
                     case AuthenticationMode.BadgeCode:
-                        ret = Login(workerBadgeCode, stationName);
+                        ret = Login(badgeCode, stationName, workerFunction);
                         break;
-                }
-                if (ret == WorkerLoginResult.Ok)
-                {
-                    CurrentWorker.StationsLogin[stationName] = true;
                 }
             }
             catch (Exception ex)
@@ -72,22 +73,30 @@ namespace Cizeta.TraMaAuth
             return ret;
         }
 
-        public void Logout(string stationName)
+        #endregion
+
+        #region Internal methods
+
+        internal string EncodePassword(string password)
         {
-            CurrentWorker.StationsLogin[stationName] = false;
+            return new PasswordManager(CryptoKey).EncodePassword(password);
+        }
+
+        internal string DecodePassword(string password)
+        {
+            return new PasswordManager(CryptoKey).DecodePassword(password);
         }
 
         #endregion
 
         #region Private methods
 
-        private WorkerLoginResult Login(string workerLoginName, string workerPassword, string stationName)
+        private WorkerLoginResult Login(string workerLoginName, string workerPassword, string stationName, WorkerFunction workerFunction)
         {
+            WorkerLoginResult ret;
+            Worker CurrentWorker = new Worker();
             if (string.IsNullOrEmpty(workerLoginName))
-            {
                 return (WorkerLoginResult.Failed);
-            }
-
             try
             {
                 CurrentWorker.LoadFromDbByLoginName(workerLoginName);
@@ -97,26 +106,16 @@ namespace Cizeta.TraMaAuth
                 ExceptionMessage = ex.Message;
                 return (WorkerLoginResult.Failed);
             }
-
-            WorkerLoginResult ret;
             try
             {
                 PasswordManager pm = new PasswordManager(CryptoKey);
                 if (pm.CheckPassword(CurrentWorker.Password, workerPassword))
-                {
-                    if (CurrentWorker.IsEnabledOnStation(stationName))
-                    {
-                        ret = WorkerLoginResult.Ok;
-                    }
-                    else
-                    {
-                        ret = WorkerLoginResult.NotEnabled;
-                    }
-                }
+                    ret = CurrentWorker.IsEnabledOnStation(stationName) ? WorkerLoginResult.Ok : WorkerLoginResult.NotEnabled;
                 else
-                {
                     ret = WorkerLoginResult.Failed;
-                }
+                if (ret == WorkerLoginResult.Ok)
+                    if (workerFunction != WorkerFunction.None)
+                        ret = CurrentWorker.HasPermissionTo(workerFunction) ? WorkerLoginResult.Ok : WorkerLoginResult.NotEnabled;
             }
             catch (Exception ex)
             {
@@ -126,13 +125,12 @@ namespace Cizeta.TraMaAuth
             return ret;
         }
 
-        private WorkerLoginResult Login(string workerBadgeCode, string stationName)
+        private WorkerLoginResult Login(string workerBadgeCode, string stationName, WorkerFunction workerFunction)
         {
+            WorkerLoginResult ret;
+            Worker CurrentWorker = new Worker();
             if (string.IsNullOrEmpty(workerBadgeCode))
-            {
                 return (WorkerLoginResult.Failed);
-            }
-
             try
             {
                 CurrentWorker.LoadFromDbByBadgeCode(workerBadgeCode);
@@ -142,25 +140,15 @@ namespace Cizeta.TraMaAuth
                 ExceptionMessage = ex.Message;
                 return (WorkerLoginResult.Failed);
             }
-
-            WorkerLoginResult ret;
             try
             {
-                if ((CurrentWorker.IsValid))
-                {
-                    if (CurrentWorker.IsEnabledOnStation(stationName))
-                    {
-                        ret = WorkerLoginResult.Ok;
-                    }
-                    else
-                    {
-                        ret = WorkerLoginResult.NotEnabled;
-                    }
-                }
+                if (CurrentWorker.IsValid)
+                    ret = CurrentWorker.IsEnabledOnStation(stationName) ? WorkerLoginResult.Ok : WorkerLoginResult.NotEnabled;
                 else
-                {
                     ret = WorkerLoginResult.Failed;
-                }
+                if (ret == WorkerLoginResult.Ok)
+                    if (workerFunction != WorkerFunction.None)
+                        ret = CurrentWorker.HasPermissionTo(workerFunction) ? WorkerLoginResult.Ok : WorkerLoginResult.NotEnabled;
             }
             catch (Exception ex)
             {
@@ -179,5 +167,4 @@ namespace Cizeta.TraMaAuth
         #endregion
 
     }
-
 }

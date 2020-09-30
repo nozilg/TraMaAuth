@@ -16,8 +16,8 @@
     <Shape ID="DesignTable:GetWorkers" ZOrder="6" X="889" Y="77" Height="248" Width="213" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="197" />
     <Shape ID="DesignTable:GetStationsConfigForWorker" ZOrder="2" X="1103" Y="78" Height="172" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
     <Shape ID="DesignTable:GetStationsConfigForWorkerByLoginName" ZOrder="5" X="1265" Y="78" Height="172" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
-    <Shape ID="DesignSources:QueriesTableAdapter" ZOrder="12" X="872" Y="366" Height="257" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="253" />
     <Shape ID="DesignTable:GetRolesList" ZOrder="1" X="1635" Y="77" Height="172" Width="216" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
+    <Shape ID="DesignSources:QueriesTableAdapter" ZOrder="12" X="872" Y="366" Height="257" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="253" />
   </Shapes>
   <Connectors />
 </DiagramLayout>
