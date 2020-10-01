@@ -21,6 +21,11 @@ namespace Cizeta.TraMaAuth
             }
         }
 
+        public Worker FindByLoginName(string loginName)
+        {
+            return Find(x => x.LoginName == loginName);
+        }
+
         public Worker FindByBadgeCode(string badgeCode)
         {
             return Find(x => x.BadgeCode == badgeCode);
