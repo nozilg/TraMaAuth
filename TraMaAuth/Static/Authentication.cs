@@ -14,6 +14,8 @@ namespace Cizeta.TraMaAuth
             InitRoles();
             InitWorkerFunctions();
             InitWorkers();
+            InitUsersRoles();
+            InitUsers();
             LoadRoles();
         }
 
@@ -112,6 +114,7 @@ namespace Cizeta.TraMaAuth
 
         private static void InitWorkers()
         {
+            // Init worker: Administrator
             string loginName = "Administrator";
             string name = "Administrator";
             string password = Worker.EncodePassword("Administrator");
@@ -130,6 +133,99 @@ namespace Cizeta.TraMaAuth
                         MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex,
                         new string[] { name, loginName, password, badgeCode, code, roleName }));
                 }
+            }
+        }
+
+        private static void InitUsersRoles()
+        {
+            try
+            {
+                int id = 0;
+                string name = string.Empty;
+                string description = string.Empty;
+                foreach (UserRole value in Enum.GetValues(typeof(UserRole)))
+                {
+                    try
+                    {
+                        id = (int)value;
+                        name = value.ToString();
+                        description = string.Empty;
+                        using (UsersDataSetTableAdapters.QueriesTableAdapter q = new UsersDataSetTableAdapters.QueriesTableAdapter())
+                        {
+                            q.MergeUserRole(id, name, description);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(ExceptionBuilder.ComposeMessage(
+                            MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex,
+                            new string[] { id.ToString(), name, description }));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ExceptionBuilder.ComposeMessage(
+                    MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex));
+            }
+        }
+
+        private static void InitUsers()
+        {
+            string name = string.Empty;
+            string loginName = string.Empty;
+            string password = string.Empty;
+            string badgeCode = string.Empty;
+            string roleName = string.Empty;
+            int autoLogoutTime = 0;
+            string emailAddress = string.Empty;
+            bool messengerEnabled = false;
+
+            try
+            {
+                // Init user: Administrator
+                loginName = "Administrator";
+                if (!User.Exists(loginName))
+                {
+                    name = loginName;
+                    password = User.EncodePassword(loginName);
+                    badgeCode = loginName;
+                    roleName = UserRole.Administrator.ToString();
+                    autoLogoutTime = 0;
+                    emailAddress = string.Empty;
+                    messengerEnabled = false;
+                    User.Create(name, loginName, password, badgeCode, roleName, autoLogoutTime, emailAddress, messengerEnabled);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ExceptionBuilder.ComposeMessage(
+                    MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex,
+                    new string[] { name, loginName, password, badgeCode, roleName, autoLogoutTime.ToString(), emailAddress, messengerEnabled.ToString() }));
+            }
+
+            try
+            {
+                // Init user: Viewer
+                loginName = "Viewer";
+                if (!User.Exists(loginName))
+                {
+                    name = loginName;
+                    loginName = "Viewer";
+                    password = User.EncodePassword(loginName);
+                    badgeCode = loginName;
+                    roleName = UserRole.Viewer.ToString();
+                    autoLogoutTime = 0;
+                    emailAddress = string.Empty;
+                    messengerEnabled = false;
+                    User.Create(name, loginName, password, badgeCode, roleName, autoLogoutTime, emailAddress, messengerEnabled);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ExceptionBuilder.ComposeMessage(
+                    MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex,
+                    new string[] { name, loginName, password, badgeCode, roleName, autoLogoutTime.ToString(), emailAddress, messengerEnabled.ToString() }));
             }
         }
 

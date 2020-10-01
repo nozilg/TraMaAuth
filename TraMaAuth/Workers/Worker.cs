@@ -24,16 +24,6 @@ namespace Cizeta.TraMaAuth
 
         #endregion
 
-        #region Events
-
-        //public event LoginDoneEventHandler LoginDone;
-        //public delegate void LoginDoneEventHandler(Worker worker);
-
-        //public event LogoutDoneEventHandler LogoutDone;
-        //public delegate void LogoutDoneEventHandler(Worker worker);
-
-        #endregion
-
         #region Constructors
 
         public Worker() : this(0, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty) { }
@@ -53,11 +43,17 @@ namespace Cizeta.TraMaAuth
             Access = new Dictionary<string, bool>();
         }
 
+        public Worker(string loginName)
+        {
+            if (!string.IsNullOrEmpty(loginName))
+                LoadFromDbByLoginName(loginName);
+        }
+
         #endregion
 
-        #region Public methods
+        #region Internal methods
 
-        public void LoadFromDbByLoginName(string loginName)
+        internal void LoadFromDbByLoginName(string loginName)
         {
             WorkersDataSet.GetWorkerByLoginNameDataTable dt;
             WorkersDataSetTableAdapters.GetWorkerByLoginNameTableAdapter da =
@@ -83,7 +79,7 @@ namespace Cizeta.TraMaAuth
             //throw new Exception(MainLang.GetMsgText("Errors", "WorkerNotFound"));
         }
 
-        public void LoadFromDbByBadgeCode(string badgeCode)
+        internal void LoadFromDbByBadgeCode(string badgeCode)
         {
             WorkersDataSet.GetWorkerByBadgeCodeDataTable dt;
             WorkersDataSetTableAdapters.GetWorkerByBadgeCodeTableAdapter da =
@@ -107,6 +103,24 @@ namespace Cizeta.TraMaAuth
             //    throw new Exception("WorkerNotFound");
             //throw new Exception(MainLang.GetMsgText("Errors", "WorkerNotFound"));
         }
+
+        internal void LoadStationsConfigFromDb(string loginName)
+        {
+            WorkersDataSet.GetStationsConfigForWorkerByLoginNameDataTable dt;
+            WorkersDataSetTableAdapters.GetStationsConfigForWorkerByLoginNameTableAdapter da =
+                new WorkersDataSetTableAdapters.GetStationsConfigForWorkerByLoginNameTableAdapter();
+            dt = da.GetData(loginName);
+            Access.Clear();
+            if (dt.Rows.Count > 0)
+            {
+                foreach (WorkersDataSet.GetStationsConfigForWorkerByLoginNameRow dtr in dt)
+                    Access.Add(dtr.StationName, dtr.Enabled);
+            }
+        }
+
+        #endregion
+
+        #region Public methods
 
         public bool IsEnabledOnStation(string stationName)
         {
@@ -171,24 +185,6 @@ namespace Cizeta.TraMaAuth
         public static string DecodePassword(string password)
         {
             return new WorkerAuthenticator().DecodePassword(password);
-        }
-
-        #endregion
-
-        #region Internal methods
-
-        internal void LoadStationsConfigFromDb(string loginName)
-        {
-            WorkersDataSet.GetStationsConfigForWorkerByLoginNameDataTable dt;
-            WorkersDataSetTableAdapters.GetStationsConfigForWorkerByLoginNameTableAdapter da =
-                new WorkersDataSetTableAdapters.GetStationsConfigForWorkerByLoginNameTableAdapter();
-            dt = da.GetData(loginName);
-            Access.Clear();
-            if (dt.Rows.Count > 0)
-            {
-                foreach (WorkersDataSet.GetStationsConfigForWorkerByLoginNameRow dtr in dt)
-                    Access.Add(dtr.StationName, dtr.Enabled);
-            }
         }
 
         #endregion
@@ -428,9 +424,9 @@ namespace Cizeta.TraMaAuth
                     MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex,
                     new string[] { id.ToString(), stationName, logoutDate.ToString() }));
             }
-
-            #endregion
-
         }
+
+        #endregion
+
     }
 }

@@ -26,7 +26,7 @@ namespace Cizeta.TraMaAuth
             return Find(x => x.BadgeCode == badgeCode);
         }
 
-        public void LoadFromDb()
+        internal void LoadFromDb()
         {
             Clear();
             WorkersDataSet.GetWorkersDataTable dt;

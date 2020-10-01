@@ -53,9 +53,7 @@ namespace Cizeta.TraMaAuth
                     case AuthenticationMode.Any:
                         ret = Login(loginName, password, stationName, workerFunction);
                         if (ret != WorkerLoginResult.Ok)
-                        {
                             ret = Login(badgeCode, stationName, workerFunction);
-                        }
                         break;
                     case AuthenticationMode.UserPassword:
                         ret = Login(loginName, password, stationName, workerFunction);
@@ -94,65 +92,49 @@ namespace Cizeta.TraMaAuth
         private WorkerLoginResult Login(string workerLoginName, string workerPassword, string stationName, WorkerFunction workerFunction)
         {
             WorkerLoginResult ret;
-            if (string.IsNullOrEmpty(workerLoginName))
-                return (WorkerLoginResult.Failed);
-            try
-            {
-                CurrentWorker.LoadFromDbByLoginName(workerLoginName);
-            }
-            catch (Exception ex)
-            {
-                ExceptionMessage = ex.Message;
-                return (WorkerLoginResult.Failed);
-            }
-            try
-            {
-                PasswordManager pm = new PasswordManager(CryptoKey);
-                if (pm.CheckPassword(CurrentWorker.Password, workerPassword))
-                    ret = CurrentWorker.IsEnabledOnStation(stationName) ? WorkerLoginResult.Ok : WorkerLoginResult.NotEnabled;
-                else
+            if (!string.IsNullOrEmpty(workerLoginName))
+                try
+                {
+                    CurrentWorker.LoadFromDbByLoginName(workerLoginName);
+                    PasswordManager pm = new PasswordManager(CryptoKey);
+                    ret = pm.CheckPassword(CurrentWorker.Password, workerPassword) ? WorkerLoginResult.Ok : WorkerLoginResult.NotEnabled;
+                    if (ret == WorkerLoginResult.Ok)
+                        ret = CurrentWorker.IsEnabledOnStation(stationName) ? WorkerLoginResult.Ok : WorkerLoginResult.NotEnabled;
+                    if (ret == WorkerLoginResult.Ok)
+                        if (workerFunction != WorkerFunction.None)
+                            ret = CurrentWorker.HasPermissionTo(workerFunction) ? WorkerLoginResult.Ok : WorkerLoginResult.NotEnabled;
+                }
+                catch (Exception ex)
+                {
+                    ExceptionMessage = ex.Message;
                     ret = WorkerLoginResult.Failed;
-                if (ret == WorkerLoginResult.Ok)
-                    if (workerFunction != WorkerFunction.None)
-                        ret = CurrentWorker.HasPermissionTo(workerFunction) ? WorkerLoginResult.Ok : WorkerLoginResult.NotEnabled;
-            }
-            catch (Exception ex)
-            {
-                ExceptionMessage = ex.Message;
+                }
+            else
                 ret = WorkerLoginResult.Failed;
-            }
             return ret;
         }
 
         private WorkerLoginResult Login(string workerBadgeCode, string stationName, WorkerFunction workerFunction)
         {
             WorkerLoginResult ret;
-            if (string.IsNullOrEmpty(workerBadgeCode))
-                return (WorkerLoginResult.Failed);
-            try
-            {
-                CurrentWorker.LoadFromDbByBadgeCode(workerBadgeCode);
-            }
-            catch (Exception ex)
-            {
-                ExceptionMessage = ex.Message;
-                return (WorkerLoginResult.Failed);
-            }
-            try
-            {
-                if (CurrentWorker.IsValid)
-                    ret = CurrentWorker.IsEnabledOnStation(stationName) ? WorkerLoginResult.Ok : WorkerLoginResult.NotEnabled;
-                else
+            if (!string.IsNullOrEmpty(workerBadgeCode))
+                try
+                {
+                    CurrentWorker.LoadFromDbByBadgeCode(workerBadgeCode);
+                    ret = CurrentWorker.IsValid ? WorkerLoginResult.Ok : WorkerLoginResult.Failed;
+                    if (ret == WorkerLoginResult.Ok)
+                        ret = CurrentWorker.IsEnabledOnStation(stationName) ? WorkerLoginResult.Ok : WorkerLoginResult.NotEnabled;
+                    if (ret == WorkerLoginResult.Ok)
+                        if (workerFunction != WorkerFunction.None)
+                            ret = CurrentWorker.HasPermissionTo(workerFunction) ? WorkerLoginResult.Ok : WorkerLoginResult.NotEnabled;
+                }
+                catch (Exception ex)
+                {
+                    ExceptionMessage = ex.Message;
                     ret = WorkerLoginResult.Failed;
-                if (ret == WorkerLoginResult.Ok)
-                    if (workerFunction != WorkerFunction.None)
-                        ret = CurrentWorker.HasPermissionTo(workerFunction) ? WorkerLoginResult.Ok : WorkerLoginResult.NotEnabled;
-            }
-            catch (Exception ex)
-            {
-                ExceptionMessage = ex.Message;
+                }
+            else
                 ret = WorkerLoginResult.Failed;
-            }
             return ret;
         }
 

@@ -1,5 +1,4 @@
-﻿using Cizeta.TraMaAuth.DataSets;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -36,8 +35,8 @@ namespace Cizeta.TraMaAuth
         {
             Clear();
             UsersDataSet.GetUsersDataTable dt;
-            DataSets.UsersDataSetTableAdapters.GetUsersTableAdapter da = 
-                new DataSets.UsersDataSetTableAdapters.GetUsersTableAdapter();
+            UsersDataSetTableAdapters.GetUsersTableAdapter da = 
+                new UsersDataSetTableAdapters.GetUsersTableAdapter();
             dt = da.GetData();
             foreach (UsersDataSet.GetUsersRow dtr in dt.Rows)
                 Add(
@@ -47,15 +46,17 @@ namespace Cizeta.TraMaAuth
                         dtr.LoginName, 
                         dtr.BadgeCode,
                         (UserRole)Enum.Parse(typeof(UserRole), dtr.RoleName), 
-                        dtr.AutoLogoutTime));
+                        dtr.AutoLogoutTime,
+                        dtr.EmailAddress,
+                        dtr.MessengerEnabled));
         }
 
         public static void MergeByWorkers()
         {
             try
             {
-                using (DataSets.UsersDataSetTableAdapters.QueriesTableAdapter q = 
-                    new DataSets.UsersDataSetTableAdapters.QueriesTableAdapter())
+                using (UsersDataSetTableAdapters.QueriesTableAdapter q = 
+                    new UsersDataSetTableAdapters.QueriesTableAdapter())
                 {
                     q.MergeUsersByWorkers();
                 }
