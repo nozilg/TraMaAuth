@@ -190,13 +190,18 @@ namespace Cizeta.TraMaAuth
 
         public UserLoginResult Login()
         {
-            return UserLoginResult.Failed;
+            LoginDate = DateTime.Now;
+            IsLogged = true;
+            UpdateLoginDate(Id, LoginDate);
             LoginDone?.Invoke(LoginName);
+            return UserLoginResult.Failed;
         }
 
         public void Logout()
         {
-            
+            LogoutDate = DateTime.Now;
+            IsLogged = false;
+            UpdateLogoutDate(Id, LogoutDate);
             LogoutDone?.Invoke(LoginName);
         }
 
