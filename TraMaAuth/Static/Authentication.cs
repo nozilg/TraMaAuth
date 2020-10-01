@@ -5,6 +5,8 @@ namespace Cizeta.TraMaAuth
 {
     public static class Authentication
     {
+        public static Roles Roles;
+
         public static void Init(string connectionString)
         {
             InitConnectionString(connectionString);
@@ -12,6 +14,7 @@ namespace Cizeta.TraMaAuth
             InitRoles();
             InitWorkerFunctions();
             InitWorkers();
+            LoadRoles();
         }
 
         private static void InitConnectionString(string connectionString)
@@ -128,6 +131,12 @@ namespace Cizeta.TraMaAuth
                         new string[] { name, loginName, password, badgeCode, code, roleName }));
                 }
             }
+        }
+
+        public static void LoadRoles()
+        {
+            Roles = new Roles();
+            Roles.LoadFromDb();
         }
     }
 }

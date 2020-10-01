@@ -7,7 +7,7 @@ namespace Cizeta.TraMaAuth
 
         #region Public members
 
-        //public Worker CurrentWorker;
+        public Worker CurrentWorker;
         public string ExceptionMessage;
 
         #endregion
@@ -29,7 +29,7 @@ namespace Cizeta.TraMaAuth
         {
             AuthenticationMode = authenticationMode;
             CryptoKey = "sfsoerkgalap";
-            //CurrentWorker = new Worker();
+            CurrentWorker = new Worker();
             ExceptionMessage = string.Empty;
             Properties.Settings.Default["TraMaConnectionString"] = connectionString;
         }
@@ -94,7 +94,6 @@ namespace Cizeta.TraMaAuth
         private WorkerLoginResult Login(string workerLoginName, string workerPassword, string stationName, WorkerFunction workerFunction)
         {
             WorkerLoginResult ret;
-            Worker CurrentWorker = new Worker();
             if (string.IsNullOrEmpty(workerLoginName))
                 return (WorkerLoginResult.Failed);
             try
@@ -128,7 +127,6 @@ namespace Cizeta.TraMaAuth
         private WorkerLoginResult Login(string workerBadgeCode, string stationName, WorkerFunction workerFunction)
         {
             WorkerLoginResult ret;
-            Worker CurrentWorker = new Worker();
             if (string.IsNullOrEmpty(workerBadgeCode))
                 return (WorkerLoginResult.Failed);
             try

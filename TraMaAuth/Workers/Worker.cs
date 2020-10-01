@@ -26,11 +26,11 @@ namespace Cizeta.TraMaAuth
 
         #region Events
 
-        public event LoginDoneEventHandler LoginDone;
-        public delegate void LoginDoneEventHandler(Worker worker);
+        //public event LoginDoneEventHandler LoginDone;
+        //public delegate void LoginDoneEventHandler(Worker worker);
 
-        public event LogoutDoneEventHandler LogoutDone;
-        public delegate void LogoutDoneEventHandler(Worker worker);
+        //public event LogoutDoneEventHandler LogoutDone;
+        //public delegate void LogoutDoneEventHandler(Worker worker);
 
         #endregion
 
@@ -108,20 +108,6 @@ namespace Cizeta.TraMaAuth
             //throw new Exception(MainLang.GetMsgText("Errors", "WorkerNotFound"));
         }
 
-        public void LoadStationsConfigFromDb(string loginName)
-        {
-            WorkersDataSet.GetStationsConfigForWorkerByLoginNameDataTable dt;
-            WorkersDataSetTableAdapters.GetStationsConfigForWorkerByLoginNameTableAdapter da =
-                new WorkersDataSetTableAdapters.GetStationsConfigForWorkerByLoginNameTableAdapter();
-            dt = da.GetData(loginName);
-            Access.Clear();
-            if (dt.Rows.Count > 0)
-            {
-                foreach (WorkersDataSet.GetStationsConfigForWorkerByLoginNameRow dtr in dt)
-                    Access.Add(dtr.StationName, dtr.Enabled);
-            }
-        }
-
         public bool IsEnabledOnStation(string stationName)
         {
             return Access[stationName];
@@ -148,10 +134,7 @@ namespace Cizeta.TraMaAuth
             WorkerAuthenticator wa = new WorkerAuthenticator(AuthenticationMode.BadgeCode);
             WorkerLoginResult ret = wa.Login(string.Empty, string.Empty, badgeCode, stationName, workerFunction);
             if (ret == WorkerLoginResult.Ok)
-            {
                 UpdateLoginDateOnStation(Id, stationName, DateTime.Now);
-                LoginDone?.Invoke(this);
-            }
             return ret;
         }
 
@@ -166,10 +149,7 @@ namespace Cizeta.TraMaAuth
             WorkerAuthenticator wa = new WorkerAuthenticator(AuthenticationMode.UserPassword);
             WorkerLoginResult ret = wa.Login(loginName, password, string.Empty, stationName, workerFunction);
             if (ret == WorkerLoginResult.Ok)
-            {
                 UpdateLoginDateOnStation(Id, stationName, DateTime.Now);
-                LoginDone?.Invoke(this);
-            }
             return ret;
         }
 
@@ -177,7 +157,6 @@ namespace Cizeta.TraMaAuth
         {
             UpdateLogoutDateOnStation(Id, stationName, DateTime.Now);
             Clear();
-            LogoutDone?.Invoke(this);
         }
 
         #endregion
@@ -192,6 +171,24 @@ namespace Cizeta.TraMaAuth
         public static string DecodePassword(string password)
         {
             return new WorkerAuthenticator().DecodePassword(password);
+        }
+
+        #endregion
+
+        #region Internal methods
+
+        internal void LoadStationsConfigFromDb(string loginName)
+        {
+            WorkersDataSet.GetStationsConfigForWorkerByLoginNameDataTable dt;
+            WorkersDataSetTableAdapters.GetStationsConfigForWorkerByLoginNameTableAdapter da =
+                new WorkersDataSetTableAdapters.GetStationsConfigForWorkerByLoginNameTableAdapter();
+            dt = da.GetData(loginName);
+            Access.Clear();
+            if (dt.Rows.Count > 0)
+            {
+                foreach (WorkersDataSet.GetStationsConfigForWorkerByLoginNameRow dtr in dt)
+                    Access.Add(dtr.StationName, dtr.Enabled);
+            }
         }
 
         #endregion
