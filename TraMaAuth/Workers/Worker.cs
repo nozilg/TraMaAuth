@@ -96,6 +96,7 @@ namespace Cizeta.TraMaAuth
                     BadgeCode = dtr.BadgeCode;
                     Code = dtr.Code;
                     Role = new Role(dtr.RoleName);
+                    Access = new Dictionary<string, bool>();
                 }
                 LoadStationsConfigFromDb(LoginName);
             }
