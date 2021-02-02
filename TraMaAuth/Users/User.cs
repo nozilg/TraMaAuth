@@ -1,13 +1,8 @@
-﻿using Cizeta.TraMaAuth.DataSets;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using System.Reflection;
 
 namespace Cizeta.TraMaAuth
 {
-
     public class User
     {
 
@@ -20,6 +15,8 @@ namespace Cizeta.TraMaAuth
         public string BadgeCode;
         public UserRole Role;
         public int AutoLogoutTime;
+        public string EmailAddress;
+        public bool MessengerEnabled;
         public DateTime LoginDate;
         public DateTime LogoutDate;
         public bool IsLogged;
@@ -30,25 +27,53 @@ namespace Cizeta.TraMaAuth
 
         public bool IsValid
         {
-            get { return (this.Id == 0 ? false : true); }
+            get { return Id > 0; }
         }
+
+        public string LoggedName
+        {
+            get { return IsLogged ? Name : string.Empty; }
+        }
+
+        #endregion
+
+        #region Events
+
+        public event LoginDoneEventHandler LoginDone;
+        public delegate void LoginDoneEventHandler(string loginName);
+
+        public event LogoutDoneEventHandler LogoutDone;
+        public delegate void LogoutDoneEventHandler(string loginName);
 
         #endregion
 
         #region Constructors
 
-        internal User() : this(0, string.Empty, string.Empty, string.Empty, UserRole.Viewer, 0) { }
+        public User() : this(0, string.Empty, string.Empty, string.Empty, UserRole.Viewer, 0, string.Empty, false) { }
 
-        internal User(int userId, string userName, string userLoginName, string userBadgeCode, UserRole userRole, int userAutoLogoutTime)
+        public User(int id, string emailAddress, bool messengerEnabled) :
+            this(id, string.Empty, string.Empty, string.Empty, UserRole.Viewer, 0, emailAddress, messengerEnabled)
+        { }
+
+        public User(int id, string name, string loginName, string badgeCode, UserRole role,
+            int autoLogoutTime, string emailAddress, bool messengerEnabled)
         {
-            this.Id = userId;
-            this.Name = userName;
-            this.LoginName = userLoginName;
-            this.Password = string.Empty;
-            this.BadgeCode = userBadgeCode;
-            this.Role = userRole;
-            this.AutoLogoutTime = userAutoLogoutTime;
-            this.IsLogged = false;
+            Id = id;
+            Name = name;
+            LoginName = loginName;
+            Password = string.Empty;
+            BadgeCode = badgeCode;
+            Role = role;
+            AutoLogoutTime = autoLogoutTime;
+            EmailAddress = emailAddress;
+            MessengerEnabled = messengerEnabled;
+            IsLogged = false;
+        }
+
+        public User(string loginName)
+        {
+            if (!string.IsNullOrEmpty(loginName))
+                LoadFromDbByLoginName(loginName);
         }
 
         #endregion
@@ -57,38 +82,37 @@ namespace Cizeta.TraMaAuth
 
         internal void LoadFromDbByLoginName(string userLoginName)
         {
-            UsersDataSet.GetUserByLoginNameDataTable dt = default(UsersDataSet.GetUserByLoginNameDataTable);
-            DataSets.UsersDataSetTableAdapters.GetUserByLoginNameTableAdapter da = new DataSets.UsersDataSetTableAdapters.GetUserByLoginNameTableAdapter();
-            dt = da.GetData(userLoginName);
+            UsersDataSetTableAdapters.GetUserByLoginNameTableAdapter da = new UsersDataSetTableAdapters.GetUserByLoginNameTableAdapter();
+            UsersDataSet.GetUserByLoginNameDataTable dt = da.GetData(userLoginName);
             if (dt.Rows.Count == 1)
             {
                 foreach (UsersDataSet.GetUserByLoginNameRow dtr in dt)
                 {
                     {
-                        this.Id = dtr.Id;
-                        this.Name = dtr.Name;
-                        this.LoginName = dtr.LoginName;
-                        this.Password = dtr.Password;
-                        this.BadgeCode = dtr.BadgeCode;
-                        this.AutoLogoutTime = dtr.AutoLogoutTime;
+                        Id = dtr.Id;
+                        Name = dtr.Name;
+                        LoginName = dtr.LoginName;
+                        Password = dtr.Password;
+                        BadgeCode = dtr.BadgeCode;
+                        AutoLogoutTime = dtr.AutoLogoutTime;
                         try
                         {
-                            this.LoginDate = dtr.LastLoginDate;
+                            LoginDate = dtr.LastLoginDate;
                         }
                         catch (Exception)
                         {
-                            this.LoginDate = System.DateTime.MinValue;
+                            LoginDate = DateTime.MinValue;
                         }
                         try
                         {
-                            this.LogoutDate = dtr.LastLogoutDate;
+                            LogoutDate = dtr.LastLogoutDate;
                         }
                         catch (Exception)
                         {
-                            this.LogoutDate = System.DateTime.MinValue;
+                            LogoutDate = DateTime.MinValue;
                         }
-                        this.Role = (UserRole)Enum.Parse(typeof(UserRole), dtr.RoleName);
-                        this.IsLogged = false;
+                        Role = (UserRole)Enum.Parse(typeof(UserRole), dtr.RoleName);
+                        IsLogged = false;
                     }
                 }
             }
@@ -100,38 +124,37 @@ namespace Cizeta.TraMaAuth
 
         internal void LoadFromDbByBadgeCode(string userBadgeCode)
         {
-            UsersDataSet.GetUserByBadgeCodeDataTable dt = default(UsersDataSet.GetUserByBadgeCodeDataTable);
-            DataSets.UsersDataSetTableAdapters.GetUserByBadgeCodeTableAdapter da = new DataSets.UsersDataSetTableAdapters.GetUserByBadgeCodeTableAdapter();
-            dt = da.GetData(userBadgeCode);
+            UsersDataSetTableAdapters.GetUserByBadgeCodeTableAdapter da = new UsersDataSetTableAdapters.GetUserByBadgeCodeTableAdapter();
+            UsersDataSet.GetUserByBadgeCodeDataTable dt = da.GetData(userBadgeCode);
             if (dt.Rows.Count == 1)
             {
                 foreach (UsersDataSet.GetUserByBadgeCodeRow dtr in dt)
                 {
                     {
-                        this.Id = dtr.Id;
-                        this.Name = dtr.Name;
-                        this.LoginName = dtr.LoginName;
-                        this.Password = dtr.Password;
-                        this.BadgeCode = dtr.BadgeCode;
-                        this.AutoLogoutTime = dtr.AutoLogoutTime;
+                        Id = dtr.Id;
+                        Name = dtr.Name;
+                        LoginName = dtr.LoginName;
+                        Password = dtr.Password;
+                        BadgeCode = dtr.BadgeCode;
+                        AutoLogoutTime = dtr.AutoLogoutTime;
                         try
                         {
-                            this.LoginDate = dtr.LastLoginDate;
+                            LoginDate = dtr.LastLoginDate;
                         }
                         catch (Exception)
                         {
-                            this.LoginDate = System.DateTime.MinValue;
+                            LoginDate = DateTime.MinValue;
                         }
                         try
                         {
-                            this.LogoutDate = dtr.LastLogoutDate;
+                            LogoutDate = dtr.LastLogoutDate;
                         }
                         catch (Exception)
                         {
-                            this.LogoutDate = System.DateTime.MinValue;
+                            LogoutDate = DateTime.MinValue;
                         }
-                        this.Role = (UserRole)Enum.Parse(typeof(UserRole), dtr.RoleName);
-                        this.IsLogged = false;
+                        Role = (UserRole)Enum.Parse(typeof(UserRole), dtr.RoleName);
+                        IsLogged = false;
                     }
                 }
             }
@@ -147,17 +170,261 @@ namespace Cizeta.TraMaAuth
 
         public bool IsAtLeast(UserRole userRole)
         {
-            return (Role <= userRole ? true : false);
+            return Role <= userRole;
         }
 
         public bool IsHigherThan(UserRole userRole)
         {
-            return (Role < userRole ? true : false);
+            return Role < userRole;
         }
 
         public bool IsLowerThan(UserRole userRole)
         {
-            return (Role > userRole ? true : false);
+            return Role > userRole;
+        }
+
+        public bool CheckPassword(string password)
+        {
+            return EncodePassword(password) == Password;
+        }
+
+        public UserLoginResult Login()
+        {
+            LoginDate = DateTime.Now;
+            IsLogged = true;
+            UpdateLoginDate(Id, LoginDate);
+            LoginDone?.Invoke(LoginName);
+            return UserLoginResult.Failed;
+        }
+
+        public void Logout()
+        {
+            LogoutDate = DateTime.Now;
+            IsLogged = false;
+            UpdateLogoutDate(Id, LogoutDate);
+            LogoutDone?.Invoke(LoginName);
+        }
+
+        #endregion
+
+        #region Public static methods
+
+        public static string EncodePassword(string password)
+        {
+            return new UserAuthenticator().EncodePassword(password);
+        }
+
+        public static string DecodePassword(string password)
+        {
+            return new UserAuthenticator().DecodePassword(password);
+        }
+
+        #endregion
+
+        #region Private methods
+
+        #endregion
+
+        #region Static database functions
+
+        public static bool Exists(string loginName)
+        {
+            bool ret = false;
+            try
+            {
+                using (UsersDataSetTableAdapters.QueriesTableAdapter q = new UsersDataSetTableAdapters.QueriesTableAdapter())
+                {
+                    ret = q.UserExists(loginName) ?? false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ExceptionBuilder.ComposeMessage(
+                    MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex,
+                    new string[] { loginName }));
+            }
+            return ret;
+        }
+
+        public static int Create(string name, string loginName, string password, string badgeCode, string roleName, int autoLogoutTime, string emailAddress, bool messengerEnabled)
+        {
+            int ret = 0;
+            try
+            {
+                using (UsersDataSetTableAdapters.QueriesTableAdapter q = new UsersDataSetTableAdapters.QueriesTableAdapter())
+                {
+                    q.CreateUser(name, loginName, password, badgeCode, roleName, autoLogoutTime, emailAddress, messengerEnabled);
+                    ret = q.GetLastId("Users") ?? 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ExceptionBuilder.ComposeMessage(
+                    MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex,
+                    new string[] { name, loginName, password, badgeCode, roleName,
+                        autoLogoutTime.ToString(), emailAddress, messengerEnabled.ToString() }));
+            }
+            return ret;
+        }
+
+        public static void Merge(int id, string name, string loginName, string password, string badgeCode, string roleName, int autoLogoutTime, string emailAddress, bool messengerEnabled)
+        {
+            try
+            {
+                using (UsersDataSetTableAdapters.QueriesTableAdapter q = new UsersDataSetTableAdapters.QueriesTableAdapter())
+                {
+                    q.MergeUser(id, name, loginName, password, badgeCode, roleName, autoLogoutTime, emailAddress, messengerEnabled);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ExceptionBuilder.ComposeMessage(
+                    MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex,
+                    new string[] { id.ToString(), name, loginName, password, badgeCode, roleName,
+                        autoLogoutTime.ToString(), emailAddress, messengerEnabled.ToString() }));
+            }
+        }
+
+        public static void MergeByWorker(int id, string name, string loginName, string password, string badgeCode, string roleName)
+        {
+            try
+            {
+                using (UsersDataSetTableAdapters.QueriesTableAdapter q = new UsersDataSetTableAdapters.QueriesTableAdapter())
+                {
+                    q.MergeUserByWorker(id, name, loginName, password, badgeCode, roleName);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ExceptionBuilder.ComposeMessage(
+                    MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex,
+                    new string[] { id.ToString(), name, loginName, password, badgeCode, roleName }));
+            }
+        }
+
+        public static void Delete(string loginName)
+        {
+            try
+            {
+                using (UsersDataSetTableAdapters.QueriesTableAdapter q = new UsersDataSetTableAdapters.QueriesTableAdapter())
+                {
+                    q.DeleteUser(loginName);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ExceptionBuilder.ComposeMessage(
+                    MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex,
+                    new string[] { loginName }));
+            }
+        }
+
+        public static int GetId(string loginName)
+        {
+            int ret;
+            try
+            {
+                using (UsersDataSetTableAdapters.QueriesTableAdapter q = new UsersDataSetTableAdapters.QueriesTableAdapter())
+                {
+                    ret = q.GetUserId(loginName) ?? 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ExceptionBuilder.ComposeMessage(
+                    MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex,
+                    new string[] { loginName }));
+            }
+            return ret;
+        }
+
+        public static string GetLoginName(int id)
+        {
+            string ret = string.Empty;
+            try
+            {
+                using (UsersDataSetTableAdapters.QueriesTableAdapter q = new UsersDataSetTableAdapters.QueriesTableAdapter())
+                {
+                    ret = q.GetUserLoginName(id);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ExceptionBuilder.ComposeMessage(
+                    MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex,
+                    new string[] { id.ToString() }));
+            }
+            return ret;
+        }
+
+        public static string GetName(int id)
+        {
+            string ret = string.Empty;
+            try
+            {
+                using (UsersDataSetTableAdapters.QueriesTableAdapter q = new UsersDataSetTableAdapters.QueriesTableAdapter())
+                {
+                    ret = q.GetUserName(id);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ExceptionBuilder.ComposeMessage(
+                    MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex,
+                    new string[] { id.ToString() }));
+            }
+            return ret;
+        }
+
+        public static void UpdatePassword(string loginName, string password)
+        {
+            try
+            {
+                using (UsersDataSetTableAdapters.QueriesTableAdapter q = new UsersDataSetTableAdapters.QueriesTableAdapter())
+                {
+                    q.UpdateUserPassword(loginName, password);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ExceptionBuilder.ComposeMessage(
+                    MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex,
+                    new string[] { loginName }));
+            }
+        }
+
+        public static void UpdateLoginDate(int id, DateTime loginDate)
+        {
+            try
+            {
+                using (UsersDataSetTableAdapters.QueriesTableAdapter q = new UsersDataSetTableAdapters.QueriesTableAdapter())
+                {
+                    q.UpdateUserLoginDate(id, loginDate);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ExceptionBuilder.ComposeMessage(
+                    MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex,
+                    new string[] { id.ToString(), loginDate.ToString() }));
+            }
+        }
+
+        public static void UpdateLogoutDate(int id, DateTime logoutDate)
+        {
+            try
+            {
+                using (UsersDataSetTableAdapters.QueriesTableAdapter q = new UsersDataSetTableAdapters.QueriesTableAdapter())
+                {
+                    q.UpdateUserLogoutDate(id, logoutDate);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ExceptionBuilder.ComposeMessage(
+                    MethodBase.GetCurrentMethod().DeclaringType.Name, MethodBase.GetCurrentMethod().Name, ex,
+                    new string[] { id.ToString(), logoutDate.ToString() }));
+            }
         }
 
         #endregion

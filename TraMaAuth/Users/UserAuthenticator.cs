@@ -14,8 +14,8 @@ namespace Cizeta.TraMaAuth
 
         #region Private members
 
-        private AuthenticationMode AuthenticationMode;
-        private string CryptoKey;
+        private readonly AuthenticationMode AuthenticationMode;
+        private readonly string CryptoKey;
 
         #endregion
 
@@ -23,14 +23,14 @@ namespace Cizeta.TraMaAuth
 
         public UserAuthenticator() : this(AuthenticationMode.Any) { }
 
-        public UserAuthenticator(AuthenticationMode authMode) : this(authMode, Properties.Settings.Default.TraMaConnectionString) { }
+        public UserAuthenticator(AuthenticationMode authenticationMode) : this(authenticationMode, Properties.Settings.Default.TraMaConnectionString) { }
 
-        public UserAuthenticator(AuthenticationMode authMode, string connectionString)
+        public UserAuthenticator(AuthenticationMode authenticationMode, string connectionString)
         {
-            this.AuthenticationMode = authMode;
-            this.CryptoKey = "wpcuklseraox";
-            this.CurrentUser = new User();
-            this.ExceptionMessage = string.Empty;
+            AuthenticationMode = authenticationMode;
+            CryptoKey = "wpcuklseraox";
+            CurrentUser = new User();
+            ExceptionMessage = string.Empty;
             Properties.Settings.Default["TraMaConnectionString"] = connectionString;
         }
 
@@ -38,27 +38,27 @@ namespace Cizeta.TraMaAuth
 
         #region Public methods
 
-        public UserLoginResult AutoLogin(string userLoginName)
-        {
-            UserLoginResult ret = UserLoginResult.Failed;
-            try
-            {
-                User u = new User();
-                u.LoadFromDbByLoginName(userLoginName);
-                PasswordManager pm = new PasswordManager(CryptoKey);
-                ret = Login(u.LoginName, pm.DecodePassword(u.Password));
-                if (ret == UserLoginResult.Ok)
-                {
-                    CurrentUser.IsLogged = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionMessage = ex.Message;
-                ret = UserLoginResult.Failed;
-            }
-            return ret;
-        }
+        //public UserLoginResult AutoLogin(string userLoginName)
+        //{
+        //    UserLoginResult ret;
+        //    try
+        //    {
+        //        User u = new User();
+        //        u.LoadFromDbByLoginName(userLoginName);
+        //        PasswordManager pm = new PasswordManager(CryptoKey);
+        //        ret = Login(u.LoginName, pm.DecodePassword(u.Password));
+        //        if (ret == UserLoginResult.Ok)
+        //        {
+        //            CurrentUser.IsLogged = true;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ExceptionMessage = ex.Message;
+        //        ret = UserLoginResult.Failed;
+        //    }
+        //    return ret;
+        //}
 
         public UserLoginResult Login(string userLoginName, string userPassword, string userBadgeCode)
         {
@@ -70,9 +70,7 @@ namespace Cizeta.TraMaAuth
                     case AuthenticationMode.Any:
                         ret = Login(userLoginName, userPassword);
                         if (ret != UserLoginResult.Ok)
-                        {
                             ret = Login(userBadgeCode);
-                        }
                         break;
                     case AuthenticationMode.UserPassword:
                         ret = Login(userLoginName, userPassword);
@@ -82,9 +80,7 @@ namespace Cizeta.TraMaAuth
                         break;
                 }
                 if (ret == UserLoginResult.Ok)
-                {
                     CurrentUser.IsLogged = true;
-                }
             }
             catch (Exception ex)
             {
@@ -96,71 +92,63 @@ namespace Cizeta.TraMaAuth
 
         public void Logout()
         {
-            this.CurrentUser.IsLogged = false;
+            CurrentUser.IsLogged = false;
+        }
+
+        #endregion
+
+        #region Internal methoods
+
+        internal string EncodePassword(string password)
+        {
+            return new PasswordManager(CryptoKey).EncodePassword(password);
+        }
+
+        internal string DecodePassword(string password)
+        {
+            return new PasswordManager(CryptoKey).DecodePassword(password);
         }
 
         #endregion
 
         #region Private methods
 
-        private UserLoginResult Login(string userLoginName, string userPassword)
+        private UserLoginResult Login(string loginName, string password)
         {
-            UserLoginResult ret = UserLoginResult.Failed;
-            try
-            {
-                if (string.IsNullOrEmpty(userLoginName))
+            UserLoginResult ret;
+            if (!string.IsNullOrEmpty(loginName))
+                try
                 {
+                    CurrentUser.LoadFromDbByLoginName(loginName);
+                    PasswordManager pm = new PasswordManager(CryptoKey);
+                    ret = pm.CheckPassword(CurrentUser.Password, password) ? UserLoginResult.Ok : UserLoginResult.Failed;
+                }
+                catch (Exception ex)
+                {
+                    ExceptionMessage = ex.Message;
                     ret = UserLoginResult.Failed;
                 }
-                else
-                {
-                    CurrentUser.LoadFromDbByLoginName(userLoginName);
-                    PasswordManager pm = new PasswordManager(CryptoKey);
-                    if (pm.CheckPassword(CurrentUser.Password, userPassword))
-                    {
-                        ret = UserLoginResult.Ok;
-                    }
-                    else
-                    {
-                        ret = UserLoginResult.Failed;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionMessage = ex.Message;
+            else
                 ret = UserLoginResult.Failed;
-            }
             return ret;
         }
 
-        private UserLoginResult Login(string userBadgeCode)
+        private UserLoginResult Login(string badgeCode)
         {
-            UserLoginResult ret = UserLoginResult.Failed;
-            try
-            {
-                if (string.IsNullOrEmpty(userBadgeCode))
+            UserLoginResult ret;
+            if (!string.IsNullOrEmpty(badgeCode))
+                try
                 {
+                    CurrentUser.LoadFromDbByBadgeCode(badgeCode);
+                    ret = CurrentUser.IsValid ? UserLoginResult.Ok : UserLoginResult.Failed;
+                }
+                catch (Exception ex)
+                {
+                    ExceptionMessage = ex.Message;
                     ret = UserLoginResult.Failed;
                 }
-                else
-                {
-                    CurrentUser.LoadFromDbByBadgeCode(userBadgeCode);
-                    if ((CurrentUser.IsValid))
-                    {
-                        ret = UserLoginResult.Ok;
-                    }
-                    else
-                    {
-                        ret = UserLoginResult.Failed;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionMessage = ex.Message;
+            else
                 ret = UserLoginResult.Failed;
-            }
             return ret;
         }
 

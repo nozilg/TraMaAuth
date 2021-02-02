@@ -14,8 +14,8 @@ namespace Cizeta.TraMaAuth
 
         #region Private members
 
-        private AuthenticationMode AuthenticationMode;
-        private string CryptoKey;
+        private readonly AuthenticationMode AuthenticationMode;
+        private readonly string CryptoKey;
 
         #endregion
 
@@ -23,14 +23,14 @@ namespace Cizeta.TraMaAuth
 
         public WorkerAuthenticator() : this(AuthenticationMode.Any) { }
 
-        public WorkerAuthenticator(AuthenticationMode authMode) : this(authMode, Properties.Settings.Default.TraMaConnectionString) { }
+        public WorkerAuthenticator(AuthenticationMode authenticationMode) : this(authenticationMode, Properties.Settings.Default.TraMaConnectionString) { }
 
-        public WorkerAuthenticator(AuthenticationMode authMode, string connectionString)
+        public WorkerAuthenticator(AuthenticationMode authenticationMode, string connectionString)
         {
-            this.AuthenticationMode = authMode;
-            this.CryptoKey = "sfsoerkgalap";
-            this.CurrentWorker = new Worker();
-            this.ExceptionMessage = string.Empty;
+            AuthenticationMode = authenticationMode;
+            CryptoKey = "sfsoerkgalap";
+            CurrentWorker = new Worker();
+            ExceptionMessage = string.Empty;
             Properties.Settings.Default["TraMaConnectionString"] = connectionString;
         }
 
@@ -38,7 +38,12 @@ namespace Cizeta.TraMaAuth
 
         #region Public methods
 
-        public WorkerLoginResult Login(string workerLoginName, string workerPassword, string workerBadgeCode, string stationName)
+        public WorkerLoginResult Login(string loginName, string password, string badgeCode, string stationName)
+        {
+            return Login(loginName, password, badgeCode, stationName, WorkerFunction.None);
+        }
+
+        public WorkerLoginResult Login(string loginName, string password, string badgeCode, string stationName, WorkerFunction workerFunction)
         {
             WorkerLoginResult ret = WorkerLoginResult.Failed;
             try
@@ -46,22 +51,16 @@ namespace Cizeta.TraMaAuth
                 switch (AuthenticationMode)
                 {
                     case AuthenticationMode.Any:
-                        ret = Login(workerLoginName, workerPassword, stationName);
+                        ret = Login(loginName, password, stationName, workerFunction);
                         if (ret != WorkerLoginResult.Ok)
-                        {
-                            ret = Login(workerBadgeCode, stationName);
-                        }
+                            ret = Login(badgeCode, stationName, workerFunction);
                         break;
                     case AuthenticationMode.UserPassword:
-                        ret = Login(workerLoginName, workerPassword, stationName);
+                        ret = Login(loginName, password, stationName, workerFunction);
                         break;
                     case AuthenticationMode.BadgeCode:
-                        ret = Login(workerBadgeCode, stationName);
+                        ret = Login(badgeCode, stationName, workerFunction);
                         break;
-                }
-                if (ret == WorkerLoginResult.Ok)
-                {
-                    CurrentWorker.StationsLogin[stationName] = true;
                 }
             }
             catch (Exception ex)
@@ -72,103 +71,70 @@ namespace Cizeta.TraMaAuth
             return ret;
         }
 
-        public void Logout(string stationName)
+        #endregion
+
+        #region Internal methods
+
+        internal string EncodePassword(string password)
         {
-            CurrentWorker.StationsLogin[stationName] = false;
+            return new PasswordManager(CryptoKey).EncodePassword(password);
+        }
+
+        internal string DecodePassword(string password)
+        {
+            return new PasswordManager(CryptoKey).DecodePassword(password);
         }
 
         #endregion
 
         #region Private methods
 
-        private WorkerLoginResult Login(string workerLoginName, string workerPassword, string stationName)
+        private WorkerLoginResult Login(string workerLoginName, string workerPassword, string stationName, WorkerFunction workerFunction)
         {
-            WorkerLoginResult ret = WorkerLoginResult.Failed;
-
-            if (string.IsNullOrEmpty(workerLoginName))
-            {
-                return (WorkerLoginResult.Failed);
-            }
-
-            try
-            {
-                CurrentWorker.LoadFromDbByLoginName(workerLoginName);
-            }
-            catch (Exception ex)
-            {
-                ExceptionMessage = ex.Message;
-                return (WorkerLoginResult.Failed);
-            }
-
-            try
-            {
-                PasswordManager pm = new PasswordManager(CryptoKey);
-                if (pm.CheckPassword(CurrentWorker.Password, workerPassword))
+            WorkerLoginResult ret;
+            if (!string.IsNullOrEmpty(workerLoginName))
+                try
                 {
-                    if (CurrentWorker.IsEnabledOnStation(stationName))
-                    {
-                        ret = WorkerLoginResult.Ok;
-                    }
-                    else
-                    {
-                        ret = WorkerLoginResult.NotEnabled;
-                    }
+                    CurrentWorker.LoadFromDbByLoginName(workerLoginName);
+                    PasswordManager pm = new PasswordManager(CryptoKey);
+                    ret = pm.CheckPassword(CurrentWorker.Password, workerPassword) ? WorkerLoginResult.Ok : WorkerLoginResult.NotEnabled;
+                    if (ret == WorkerLoginResult.Ok)
+                        ret = CurrentWorker.IsEnabledOnStation(stationName) ? WorkerLoginResult.Ok : WorkerLoginResult.NotEnabled;
+                    if (ret == WorkerLoginResult.Ok)
+                        if (workerFunction != WorkerFunction.None)
+                            ret = CurrentWorker.HasPermissionTo(workerFunction) ? WorkerLoginResult.Ok : WorkerLoginResult.NotEnabled;
                 }
-                else
+                catch (Exception ex)
                 {
+                    ExceptionMessage = ex.Message;
                     ret = WorkerLoginResult.Failed;
                 }
-            }
-            catch (Exception ex)
-            {
-                ExceptionMessage = ex.Message;
+            else
                 ret = WorkerLoginResult.Failed;
-            }
             return ret;
         }
 
-        private WorkerLoginResult Login(string workerBadgeCode, string stationName)
+        private WorkerLoginResult Login(string workerBadgeCode, string stationName, WorkerFunction workerFunction)
         {
-            WorkerLoginResult ret = WorkerLoginResult.Failed;
-
-            if (string.IsNullOrEmpty(workerBadgeCode))
-            {
-                return (WorkerLoginResult.Failed);
-            }
-
-            try
-            {
-                CurrentWorker.LoadFromDbByBadgeCode(workerBadgeCode);
-            }
-            catch (Exception ex)
-            {
-                ExceptionMessage = ex.Message;
-                return (WorkerLoginResult.Failed);
-            }
-
-            try
-            {
-                if ((CurrentWorker.IsValid))
+            WorkerLoginResult ret;
+            if (!string.IsNullOrEmpty(workerBadgeCode))
+                try
                 {
-                    if (CurrentWorker.IsEnabledOnStation(stationName))
-                    {
-                        ret = WorkerLoginResult.Ok;
-                    }
-                    else
-                    {
-                        ret = WorkerLoginResult.NotEnabled;
-                    }
+                    CurrentWorker.LoadFromDbByBadgeCode(workerBadgeCode);
+                    ret = CurrentWorker.IsValid ? WorkerLoginResult.Ok : WorkerLoginResult.Failed;
+                    if (ret == WorkerLoginResult.Ok)
+                        ret = CurrentWorker.IsEnabledOnStation(stationName) ? WorkerLoginResult.Ok : WorkerLoginResult.NotEnabled;
+                    if (ret == WorkerLoginResult.Ok)
+                        if (workerFunction != WorkerFunction.None)
+                            ret = CurrentWorker.HasPermissionTo(workerFunction) ? WorkerLoginResult.Ok : WorkerLoginResult.NotEnabled;
                 }
-                else
+                catch (Exception ex)
                 {
+                    ExceptionMessage = ex.Message;
                     ret = WorkerLoginResult.Failed;
                 }
-            }
-            catch (Exception ex)
-            {
-                ExceptionMessage = ex.Message;
+            else
                 ret = WorkerLoginResult.Failed;
-            }
             return ret;
         }
 
@@ -181,5 +147,4 @@ namespace Cizeta.TraMaAuth
         #endregion
 
     }
-
 }
