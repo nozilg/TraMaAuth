@@ -55,7 +55,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="DataSets\UsersDataSet.Designer.cs">
+    <Compile Include="Static\Authentication.cs" />
+    <Compile Include="UsersDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>UsersDataSet.xsd</DependentUpon>
@@ -64,7 +65,7 @@
     <Compile Include="Roles\Roles.cs" />
     <Compile Include="Users\User.cs" />
     <Compile Include="Users\UserAuthenticator.cs" />
-    <Compile Include="DataSets\WorkersDataSet.Designer.cs">
+    <Compile Include="WorkersDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WorkersDataSet.xsd</DependentUpon>
@@ -72,6 +73,7 @@
     <Compile Include="Users\Users.cs" />
     <Compile Include="Workers\Worker.cs" />
     <Compile Include="Workers\WorkerAuthenticator.cs" />
+    <Compile Include="Workers\WorkerFunctions.cs" />
     <Compile Include="Workers\Workers.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -80,26 +82,26 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="DataSets\UsersDataSet.xsc">
+    <None Include="UsersDataSet.xsc">
       <DependentUpon>UsersDataSet.xsd</DependentUpon>
     </None>
-    <None Include="DataSets\UsersDataSet.xsd">
+    <None Include="UsersDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>UsersDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="DataSets\UsersDataSet.xss">
+    <None Include="UsersDataSet.xss">
       <DependentUpon>UsersDataSet.xsd</DependentUpon>
     </None>
-    <None Include="DataSets\WorkersDataSet.xsc">
+    <None Include="WorkersDataSet.xsc">
       <DependentUpon>WorkersDataSet.xsd</DependentUpon>
     </None>
-    <None Include="DataSets\WorkersDataSet.xsd">
+    <None Include="WorkersDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>WorkersDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="DataSets\WorkersDataSet.xss">
+    <None Include="WorkersDataSet.xss">
       <DependentUpon>WorkersDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>

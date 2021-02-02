@@ -1,5 +1,4 @@
-﻿using Cizeta.TraMaAuth.DataSets;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Cizeta.TraMaAuth
@@ -25,16 +24,10 @@ namespace Cizeta.TraMaAuth
         {
             Clear();
             WorkersDataSet.GetRolesDataTable dt;
-            DataSets.WorkersDataSetTableAdapters.GetRolesTableAdapter da = new DataSets.WorkersDataSetTableAdapters.GetRolesTableAdapter();
+            WorkersDataSetTableAdapters.GetRolesTableAdapter da = new WorkersDataSetTableAdapters.GetRolesTableAdapter();
             dt = da.GetData();
             foreach (WorkersDataSet.GetRolesRow dtr in dt.Rows)
-                Add(
-                    new Role(
-                        dtr.Id, 
-                        dtr.Name, 
-                        dtr.Description, 
-                        dtr.AccessLevel, 
-                        dtr.CanRepair));
+                Add(new Role(dtr.Id, dtr.Name, dtr.Description, dtr.AccessLevel));
         }
     }
 }
