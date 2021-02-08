@@ -6,6 +6,8 @@ namespace Cizeta.TraMaAuth
 {
     public class Worker
     {
+        #region Public
+
         public int Id;
         public string Name;
         public string LoginName;
@@ -14,6 +16,8 @@ namespace Cizeta.TraMaAuth
         public string Code;
         public Role Role;
         public Dictionary<string, bool> Access;
+
+        #endregion
 
         #region Properties
 
@@ -138,6 +142,8 @@ namespace Cizeta.TraMaAuth
             return EncodePassword(password) == Password;
         }
 
+        #region Login by badge code
+
         public WorkerLoginResult Login(string stationName, string badgeCode)
         {
             return Login(stationName, badgeCode, WorkerFunction.None);
@@ -145,13 +151,25 @@ namespace Cizeta.TraMaAuth
 
         public WorkerLoginResult Login(string stationName, string badgeCode, WorkerFunction workerFunction)
         {
+            return Login(stationName, badgeCode, workerFunction, Properties.Settings.Default.TraMaConnectionString);
+        }
+
+        public WorkerLoginResult Login(string stationName, string badgeCode, WorkerFunction workerFunction, string connectionString)
+        {
             LoadFromDbByBadgeCode(badgeCode);
-            WorkerAuthenticator wa = new WorkerAuthenticator(AuthenticationMode.BadgeCode);
+            WorkerAuthenticator wa = new WorkerAuthenticator(AuthenticationMode.BadgeCode, connectionString);
             WorkerLoginResult ret = wa.Login(string.Empty, string.Empty, badgeCode, stationName, workerFunction);
             if (ret == WorkerLoginResult.Ok)
+            {
+                LoadFromDbByBadgeCode(badgeCode);
                 UpdateLoginDateOnStation(Id, stationName, DateTime.Now);
+            }
             return ret;
         }
+
+        #endregion
+
+        #region Login by username/password
 
         public WorkerLoginResult Login(string stationName, string loginName, string password)
         {
@@ -160,13 +178,20 @@ namespace Cizeta.TraMaAuth
 
         public WorkerLoginResult Login(string stationName, string loginName, string password, WorkerFunction workerFunction)
         {
+            return Login(stationName, loginName, password, workerFunction, Properties.Settings.Default.TraMaConnectionString);
+        }
+
+        public WorkerLoginResult Login(string stationName, string loginName, string password, WorkerFunction workerFunction, string connectionString)
+        {
             LoadFromDbByLoginName(loginName);
-            WorkerAuthenticator wa = new WorkerAuthenticator(AuthenticationMode.UserPassword);
+            WorkerAuthenticator wa = new WorkerAuthenticator(AuthenticationMode.UserPassword, connectionString);
             WorkerLoginResult ret = wa.Login(loginName, password, string.Empty, stationName, workerFunction);
             if (ret == WorkerLoginResult.Ok)
                 UpdateLoginDateOnStation(Id, stationName, DateTime.Now);
             return ret;
         }
+
+        #endregion
 
         public void Logout(string stationName)
         {
@@ -428,6 +453,5 @@ namespace Cizeta.TraMaAuth
         }
 
         #endregion
-
     }
 }
