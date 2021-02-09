@@ -97,7 +97,7 @@ namespace Cizeta.TraMaAuth
                 {
                     CurrentWorker.LoadFromDbByLoginName(workerLoginName);
                     PasswordManager pm = new PasswordManager(CryptoKey);
-                    ret = pm.CheckPassword(CurrentWorker.Password, workerPassword) ? WorkerLoginResult.Ok : WorkerLoginResult.NotEnabled;
+                    ret = pm.CheckPassword(CurrentWorker.Password, workerPassword) ? WorkerLoginResult.Ok : WorkerLoginResult.Failed;
                     if (ret == WorkerLoginResult.Ok)
                         ret = CurrentWorker.IsEnabledOnStation(stationName) ? WorkerLoginResult.Ok : WorkerLoginResult.NotEnabled;
                     if (ret == WorkerLoginResult.Ok)
@@ -121,7 +121,7 @@ namespace Cizeta.TraMaAuth
                 try
                 {
                     CurrentWorker.LoadFromDbByBadgeCode(workerBadgeCode);
-                    ret = CurrentWorker.IsValid ? WorkerLoginResult.Ok : WorkerLoginResult.Failed;
+                    ret = CurrentWorker.IsValid ? WorkerLoginResult.Ok : WorkerLoginResult.NotFound;
                     if (ret == WorkerLoginResult.Ok)
                         ret = CurrentWorker.IsEnabledOnStation(stationName) ? WorkerLoginResult.Ok : WorkerLoginResult.NotEnabled;
                     if (ret == WorkerLoginResult.Ok)

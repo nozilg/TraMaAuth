@@ -28,6 +28,7 @@
     {
         Ok,
         Failed,
+        NotFound,
         NotEnabled
     }
 }
