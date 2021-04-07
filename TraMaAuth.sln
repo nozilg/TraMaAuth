@@ -7,10 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraMaAuth", "TraMaAuth\TraM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraMaAuth_Test", "TraMaAuth_Test\TraMaAuth_Test.csproj", "{E8ABD6A5-5178-4CF5-8CE5-C20DCAB59CC3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", "{341EF822-A2D8-430C-8C76-FE7EA21DB478}"
-EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Cryptography", "..\..\..\..\Lib\Cryptography\Cryptography\Cryptography.vbproj", "{CAA4A84F-F603-403D-8DEA-CEA84E0540E4}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,16 +21,9 @@ Global
 		{E8ABD6A5-5178-4CF5-8CE5-C20DCAB59CC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8ABD6A5-5178-4CF5-8CE5-C20DCAB59CC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8ABD6A5-5178-4CF5-8CE5-C20DCAB59CC3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CAA4A84F-F603-403D-8DEA-CEA84E0540E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CAA4A84F-F603-403D-8DEA-CEA84E0540E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CAA4A84F-F603-403D-8DEA-CEA84E0540E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CAA4A84F-F603-403D-8DEA-CEA84E0540E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{CAA4A84F-F603-403D-8DEA-CEA84E0540E4} = {341EF822-A2D8-430C-8C76-FE7EA21DB478}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8B6BEB55-E967-4049-9517-FA2FE636B975}
