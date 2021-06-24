@@ -31,28 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cizeta.Cryptography, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Cizeta.TraMaCore.Utilities.1.0.0\lib\v4.7.2\Cizeta.Cryptography.dll</HintPath>
-    </Reference>
-    <Reference Include="Cizeta.EthernetCom, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Cizeta.TraMaCore.Utilities.1.0.0\lib\v4.7.2\Cizeta.EthernetCom.dll</HintPath>
-    </Reference>
-    <Reference Include="Cizeta.EventLogger, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Cizeta.TraMaCore.Utilities.1.0.0\lib\v4.7.2\Cizeta.EventLogger.dll</HintPath>
-    </Reference>
-    <Reference Include="Cizeta.SerialCom, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Cizeta.TraMaCore.Utilities.1.0.0\lib\v4.7.2\Cizeta.SerialCom.dll</HintPath>
-    </Reference>
-    <Reference Include="Cizeta.TraMa2RAD, Version=1.1.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Cizeta.TraMaCore.Utilities.1.0.0\lib\v4.7.2\Cizeta.TraMa2RAD.dll</HintPath>
-    </Reference>
-    <Reference Include="Cizeta.XmlSerializer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Cizeta.TraMaCore.Utilities.1.0.0\lib\v4.7.2\Cizeta.XmlSerializer.dll</HintPath>
-    </Reference>
-    <Reference Include="LasRetrievingData, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Cizeta.TraMaCore.Utilities.1.0.0\lib\v4.7.2\LasRetrievingData.dll</HintPath>
-    </Reference>
-    <Reference Include="S7TIAHandler, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Cizeta.TraMaCore.Utilities.1.0.0\lib\v4.7.2\S7TIAHandler.dll</HintPath>
+      <HintPath>..\packages\Cizeta.TraMaAuth.1.0.0\lib\net452\Cizeta.Cryptography.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
